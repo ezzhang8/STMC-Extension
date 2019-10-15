@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>New Tab</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="resources/uikit/uikit.min.css" />
+    <link rel="stylesheet" href="resources/newTab.css" />
+
+    <script async src="resources/uikit/uikit.min.js"></script>
+    <script async src="resources/uikit/uikit-icons.min.js"></script>
+
+</head>
+
+<body>
+    <!--BEGIN NAVBAR-->
+    <nav class="uk-navbar-container uk-navbar uk-box-shadow-large red-gd"
+        style="height:60px; border-bottom-left-radius:15px; border-bottom-right-radius:15px; overflow:hidden;"
+        uk-navbar>
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+                <a id="menu-button" class="uk-navbar-toggle main white" uk-navbar-toggle-icon
+                    uk-toggle="target: #offcanvas-reveal" href="#"></a>
+                <div class="uk-logo">
+                    <a href="#"><img src="icon_128.png" style="height:60px"></a>
+                </div>
+            </ul>
+        </div>
+        <div class="uk-navbar-center">
+            <div style="text-align:center">
+                <form action="javascript:searchChimp()" method="get" target="_blank">
+                    <span class="uk-form-icon" uk-icon="icon: search"></span>
+                    <input class="uk-input uk-width-1-2" type="text" style="border-radius:50px; width:600px;"
+                        placeholder="Google">
+                </form>
+            </div>
+        </div>
+        <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+                <li class="uk-active" style=""><a href="#" uk-icon="icon: grid" class="white"><b></b></a></li>
+                <li class="uk-active" style=""><a href="#" class="white"><b>mySTMC </b></a></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="offcanvas-reveal" uk-offcanvas="mode: reveal; overlay: true">
+        <div class="uk-offcanvas-bar black-gd">
+            <button class="uk-offcanvas-close" type="button" uk-close></button>
+            <ul class="uk-nav">
+                <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: home"></span> Home</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--END NAVBAR-->
+    <div class="uk-container">
+        <br><br>
+        <div class="uk-child-width-expand@s uk-text-left" uk-grid>
+            <div>
+                <div class="uk-card uk-card-default uk-card-hover"
+                    style="background: linear-gradient(325.83deg, #C71F3C 0%, rgb(222, 33, 33) 100%)">
+                    <div class="uk-card-header">
+                        <div class="uk-grid-small uk-flex-left" uk-grid>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title uk-margin-remove-bottom"><b id="time" class="white">-</b><span
+                                        class="white" style="float: right;">EFGH</span></h3>
+                                <p id="date" class="uk-text-meta uk-margin-remove-top white">-</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-card-body uk-padding-small uk-text-center">
+                        <h4 class="uk-card-title uk-margin-remove-bottom"><b class="white">Block F</b></h4>
+                        <p class="uk-text-meta uk-margin-remove-top white">11:20&ndash; 12:35</p>
+
+                    </div>
+                    <div class="uk-card-footer">
+                        <a href="#" class="uk-button uk-button-text white">View Schedule</a>
+                    </div>
+                </div>
+                <br>
+                <div class="uk-card uk-card-default uk-card-hover"
+                    style="background: linear-gradient(325.83deg, #C71F3C 0%, rgb(222, 33, 33) 100%)">
+                    <div class="uk-card-header uk-padding-small	">
+                        <div class="uk-grid-small uk-flex-left" uk-grid>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title uk-margin-remove-bottom"><b class="white">Upcoming</b></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-card-body uk-padding-small uk-text-center">
+                        <h5 class="uk-text-left white"><b>Lunch</b> <span style="float:right;">12:35&ndash;1:20</span></h5>
+                       
+                        <table class="white">
+                            <tr><td>29</td><td class="white"><b>Test</b></td></tr>
+                        </table>
+
+                    </div>
+
+                    <div class="uk-card-footer">
+                        <a href="#" class="uk-button uk-button-text white">View Schedule</a>
+                    </div>
+                </div>
+                <br>
+                <div class="uk-card uk-card-default uk-card-hover red-gd">
+                    <div class="uk-card-header uk-padding-small	">
+                        <div class="uk-grid-small uk-flex-left" uk-grid>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title uk-margin-remove-bottom"><b class="white">October 2019</b>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-card-body uk-padding-small uk-text-center">
+                        <h4 class="uk-card-title uk-margin-remove-bottom"><b class="white">Block F</b></h4>
+                        <p class="uk-text-meta uk-margin-remove-top white">11:20&ndash;12:35</p>
+                    </div>
+                    <div class="uk-card-footer">
+                        <a href="#" class="uk-button uk-button-text white">View Schedule</a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="uk-card uk-card-default uk-card-body uk-padding-small uk-padding-remove-bottom white-gd">
+                    <div class="">
+                        <div class="uk-text-left" uk-grid>
+                            <img width="100" height="100" src="icon_128.png">
+                            <span class="uk-text-large uk-padding-remove-left"><b>Announcement</b>
+                                <p class="uk-text-meta uk-margin-remove-top">via Office on Sep 27</p>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="uk-card-body uk-padding-small">
+                        Good morning staff and students. As a faith and learning community, let us all...
+                    </div>
+                    <div class="uk-card-footer uk-padding-small">
+                        <a href="#" class="uk-button uk-button-text">Read More</a>
+                    </div>
+                </div>
+                <br>
+                <div class="uk-card uk-card-default uk-card-body uk-padding-small uk-padding-remove-bottom warn-gd">
+                    <div class="">
+                        <div class="uk-text-left" uk-grid>
+                            <img width="100" height="100" src="icon_128.png">
+                            <span class="uk-text-large uk-padding-remove-left black"><b>Important</b>
+                                <p class="uk-text-meta uk-margin-remove-top black">via Office on Sep 27</p>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="uk-card-body uk-padding-small black">
+                        Good morning staff and students. As a faith and learning community, let us all...
+                    </div>
+                    <div class="uk-card-footer uk-padding-small">
+                        <a href="#" class="uk-button uk-button-text">Read More</a>
+                    </div>
+                </div>
+                <br>
+                <div class="uk-card uk-card-default uk-card-body uk-padding-small uk-padding-remove-bottom white-gd">
+                    <div class="">
+                        <div class="uk-text-left" uk-grid>
+                            <img width="100" height="100" src="icon_128.png">
+                            <span class="uk-text-large uk-padding-remove-left"><b>Announcement</b>
+                                <p class="uk-text-meta uk-margin-remove-top">via Office on Sep 27</p>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="uk-card-body uk-padding-small">
+                        Good morning staff and students. As a faith and learning community, let us all...
+                    </div>
+                    <div class="uk-card-footer uk-padding-small">
+                        <a href="#" class="uk-button uk-button-text">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="uk-card uk-card-default uk-card-hover black-gd">
+                    <div class="uk-card-header uk-padding-small">
+                        <div class="uk-grid-small uk-flex-left" uk-grid>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title uk-margin-remove-bottom"><b class="white">Resources</b></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-card-body uk-padding-small uk-text-center">
+                        <table class="uk-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <figure><a href="https://ps.stmc.bc.ca"><img class="rounded res-img"
+                                                    src="resources/res-icons/PowerSchool.jpg"></a><br><a
+                                                href="https://ps.stmc.bc.ca" class="white"><b>PowerSchool</b></a>
+                                        </figure>
+                                    </td>
+                                    <td>
+                                        <figure><a href="https://moodle.stmc.bc.ca"><img class="rounded res-img"
+                                                    src="resources/res-icons/Moodle.png"></a><br><a
+                                                href="https://moodle.stmc.bc.ca" class="white"><b>Moodle</b></a>
+                                        </figure>
+                                    </td>
+                                    <td>
+                                        <figure><a href="https://classroom.google.com"><img class="rounded res-img"
+                                                    src="resources/res-icons/Classroom.png"></a><br><a
+                                                href="https://classroom.google.com" class="white"><b>Classroom</b></a>
+                                        </figure>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <figure><a href="https://app.myblueprint.ca/"><img class="rounded res-img"
+                                                    src="resources/res-icons/myBlueprint.png"></a><br><a
+                                                href="https://app.myblueprint.ca/" class="white"><b>myBlueprint</b></a>
+                                        </figure>
+                                    </td>
+                                    <td>
+                                        <figure><a href="https://my.noodletools.com/logon/signin"><img class="rounded res-img"
+                                                    src="resources/res-icons/Noodle.png"></a><br><a
+                                                href="https://my.noodletools.com/logon/signin" class="white"><b>NoodleTools</b></a>
+                                        </figure>
+                                    </td>
+                                    <td>
+                                        <figure><a href="https://app.myblueprint.ca/"><img class="rounded res-img"
+                                                    src="resources/res-icons/myBlueprint.png"></a><br><a
+                                                href="https://app.myblueprint.ca/" class="white"><b>myBlueprint</b></a>
+                                        </figure>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img class="rounded res-img" src="resources/res-icons/PowerSchool.jpg"><br><a
+                                            href="" class="">PowerSchool</a></td>
+                                    <td><img class="rounded res-img" src="resources/res-icons/PowerSchool.jpg"><br><a
+                                            href="" class="">PowerSchool</a></td>
+                                    <td><img class="rounded res-img" src="resources/res-icons/PowerSchool.jpg"><br><a
+                                            href="" class="">PowerSchool</a></td>
+                                </tr>
+                                <tr>
+                                    <td><img class="rounded res-img" src="resources/res-icons/PowerSchool.jpg"><br><a
+                                            href="" class="">PowerSchool</a></td>
+                                    <td><img class="rounded res-img" src="resources/res-icons/PowerSchool.jpg"><br><a
+                                            href="" class="">PowerSchool</a></td>
+                                    <td><img class="rounded res-img" src="resources/res-icons/PowerSchool.jpg"><br><a
+                                            href="" class="">PowerSchool</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script async src="resources/scripts/date.js"></script>
+
+</body>
+
+</html>

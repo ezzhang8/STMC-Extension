@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' http://whateverorigin.org 'unsafe-inline' 'unsafe-eval'">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    </head>
+    <body>
+        <div id="screen-1" class="view visible">
+            <h4 id="dotw" class="header centered" style="margin-bottom:5px;">...</h4>
+            <h1 id="date" style="margin:0;"class="header centered">...</h1>
+            <hr>
+            <div style="text-align:center">
+                <table id="bar">
+                    <tbody>
+                        <tr>
+                            <td><button id="prev">&lt;&lt; Prev</button></td>
+                            <td><h2 id="day-info" class="header centered"> &mdash; </h2></td>
+                            <td><button id="next">Next &gt;&gt;</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <table id="schedule">
+                <tbody id="schedule-body">
+                </tbody>
+            </table>
+            <table id="events">
+                  <tbody id="events-body" style="text-align:center">
+                </tbody>
+            </table>
+
+        </div>
+        <div id="screen-2" class="view centered">
+          <h4 class="header" style="margin-bottom:5px;">Events</h4>
+          <div style="text-align:center">
+              <table id="bar2">
+                  <tbody>
+                      <tr>
+                          <td><button id="prev">&lt;&lt; Prev</button></td>
+                          <td><h2 id="month-id" class="header centered" style="margin:0 ">September</h2></td>
+                          <td><button id="next">Next &gt;&gt;</button></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <table id="calendar">
+              <tbody id="calendar-body" style="text-align:center">
+                <tr>
+                    <td>2</td>
+                    <td><b>Labour Day</b></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><b>Grade 8 Orientation</b></td>
+                    <td>1:00 PM</td>
+                </tr>
+                <tr class="acas">
+                    <td>4</td>
+                    <td><b>Opening Assembly</b></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><b>Knighting Ceremony/Pep Rally</b></td>
+                    <td>2:20 PM</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><b>Homecoming/Red Day</b></td>
+                    <td></td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+
+        <div id="screen-3" class="view centered">
+            <h1 class="header" style="margin-bottom:0;">House Standings</h1>
+            <h3 class="header" style="margin-top:0;">Updated August 28</h3>
+            <hr>
+            <table id="house">
+                <tbody id="house-body" style="text-align:center">
+                    <tr>
+                        <td style="background-color:#5398ed; color:white;">&#128081;</td>
+                        <td style="background-color:#3486eb; color:white;"><b>Waterford</b></td>
+                        <td style="background-color:#5398ed; color:white;"><b>2495</b></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#c9443a; color:white;">2</td>
+                        <td style="background-color:#c93126; color:white;">London</td>
+                        <td style="background-color:#c9443a; color:white;">2234</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#b253ed; color:white;">3</td>
+                        <td style="background-color:#9d29e6; color:white;">Oxford</td>
+                        <td style="background-color:#b253ed; color:white;">1234</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#62b52b; color:white;">4</td>
+                        <td style="background-color:#398a03; color:white;">Kilkenny</td>
+                        <td style="background-color:#62b52b; color:white;">987</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#e8cb02; color:white;">5</td>
+                        <td style="background-color:#edce00; color:white;">Rome</td>
+                        <td style="background-color:#e8cb02; color:white;">654</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button style="margin:5px;">More Info</button>
+            <br>
+        </div>
+
+        <div id="screen-4" class="view centered">
+            <h1 class="header" style="margin-bottom:0;">More</h1>
+            <table id="apps" style="background-color:#ede6d2;">
+                <tbody id="apps-body">
+                    <tr style="background-color:#ede6d2;border-color:#ede6d2;">
+                        <td>
+                          <button style="width:100%;height:100%">Test</button>
+                        </td>
+                        <td>
+                          <button style="width:100%;height:100%">Test</button>
+                        </td>
+                        <td>
+                          <button style="width:100%;height:100%">Test</button>
+                        </td>
+                    </tr>
+                    <tr style="background-color:#ede6d2;border-color:#ede6d2;">
+                        <td>
+                          <button style="width:100%;height:100%">Test</button>
+                        </td>
+                        <td>
+                          <button style="width:100%;height:100%">Test</button>
+                        </td>
+                        <td>
+                          <button style="width:100%;height:100%">Test</button>
+                        </td>
+                    </tr>
+                    <tr style="background-color:#ede6d2;border-color:#ede6d2;">
+                        <td>
+                          <button style="width:100%;height:100%">Test</button>
+                        </td>
+                        <td>
+                          <button style="width:100%;height:100%">Test</button>
+                        </td>
+                        <td>
+                          <button style="width:100%;height:100%">Test</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="tab-bar" class="footer" style="text-align:center">
+            <button id="tab-1" class="tab enabled">Schedule</button>
+            <button id="tab-2" class="tab">Events</button>
+            <button id="tab-3" class="tab">Student Life</button>
+            <button id="tab-4" class="tab">. . .</button>
+        </div>
+
+    </body>
+    <script src="firebase-app.js"></script>
+    <script src="firebase-database.js"></script>
+    <script src="firebase-auth.js"></script>
+
+    <script src="init.js"></script>
+    <script type="text/javascript" src="popup.js"></script>
+</html>
