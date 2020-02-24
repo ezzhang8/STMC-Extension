@@ -1,2 +1,0 @@
-# STMC Extension
- 

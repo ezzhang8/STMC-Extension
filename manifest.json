@@ -1,25 +1,13 @@
 {
-    "background": {
-      "persistent": false,
-      "scripts": ["background.js"]
-    },
     "manifest_version": 2,
-    "name": "STMC+",
+    "name": "STMC",
     "description": "Live block rotation checker, additional Powerschool features, updates, and more. This extension is currently in alpha testing, so please do not rely on it.",
-    "version": "0.9.9.1",
-    "icons": {"128":"icon_128.png"},
+    "version": "1.0",
+    "icons": {"128":"res/imgs/icons/icon_128.png"},
     "browser_action": {
-        "default_icon": "icon.png",
+        "default_icon": "res/imgs/icons/icon.png",
         "default_popup": "popup.html"
     },
-    "content_scripts": [{
-        "js": ["firebase-app.js", "firebase-database.js"],
-        "matches": ["http://*/*", "https://*/*"],
-        "run_at": "document_end"
-    }],
     "permissions": ["activeTab", "notifications", "storage", "declarativeContent"],
-    "web_accessible_resources": ["/resources/", "*.png"],
-    "chrome_url_overrides" : {
-        "newtab": "nt.html"
-    }
+    "web_accessible_resources": ["/resources/", "*.png"]
 }
