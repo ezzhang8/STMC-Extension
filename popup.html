@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -7,11 +7,24 @@
     <link rel="stylesheet" href="res/css/uikit.min.css">
     <!--Customized stylesheet-->
     <link rel="stylesheet" href="res/css/default.css">
-    <!--Date Picker-->
-    <link rel="stylesheet" href="res/css/datepicker.min.css">
     <!--Import font from Google-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+
+
+    <script type="text/javascript" async src="res/js/uikit.min.js"></script>
+    <script type="text/javascript" defer src="res/js/uikit-icons.min.js"></script>
+
+    <script type="text/javascript" src="res/js/icons.js"></script>
+
+
+    <!--Import custom JS-->
+    <script type="text/javascript" defer src="res/js/popup.js"></script>
+    <script type="text/javascript" defer src="res/js/explore.js"></script>
+    <script type="text/javascript" defer src="res/js/schedule.js"></script>
+    <script type="text/javascript" defer src="res/js/calendar.js"></script>
+    <script type="text/javascript" defer src="res/js/notifications.js"></script>
+
 
 </head>
 
@@ -33,60 +46,64 @@
                     <!--Schedule Cards-->
                     <div id="schedule-cards">
                         <!--Yesterday Card-->
-                        <div class="card left">
-                            <div class="card-container uk-position-relative uk-position-center">
-                                <h6 class="small-text left text-card">Friday</h6>
-                                <h6 class="small-text right text-card">Jan. 24</h6>
-                                <h4 class="small-header" style="text-align:center">GHEF</h4>
-                                <h6 class="small-text " style="text-align:center">Regular Schedule</h6>
+                        <div class="card left explore-card">
+                            <div id="explore-0"
+                                class="card-container uk-position-relative uk-position-center ">
+                                <h6 class="small-text left text-card">...</h6>
+                                <h6 class="small-text right text-card">...</h6>
+                                <h4 class="small-header" style="text-align:center"></h4>
+                                <h6 class="small-text footer" style="text-align:center">...</h6>
                             </div>
                         </div>
                         <!--Today Card-->
-                        <div class="card left">
-                            <div class="card-container uk-position-relative uk-position-center">
-                                <h6 class="small-text left text-card">Today</h6>
-                                <h6 class="small-text right text-card">Jan. 27</h6>
-                                <h4 class="small-header" style="text-align:center">DABC</h4>
-                                <h6 class="small-text " style="text-align:center">Regular Schedule</h6>
+                        <div class="card left explore-card">
+                            <div id="explore-1"
+                                class="card-container uk-position-relative uk-position-center ">
+                                <h6 class="small-text left text-card">...</h6>
+                                <h6 class="small-text right text-card">...</h6>
+                                <h4 class="small-header" style="text-align:center"></h4>
+                                <h6 class="small-text footer" style="text-align:center">...</h6>
                             </div>
                         </div>
                         <!--Tomorrow Card-->
-                        <div class="card left">
-                            <div class="card-container uk-position-relative uk-position-center">
-                                <h6 class="small-text left text-card">Tuesday</h6>
-                                <h6 class="small-text right text-card">Jan. 28</h6>
-                                <h4 class="small-header" style="text-align:center">HEFG</h4>
-                                <h6 class="small-text " style="text-align:center">Regular Schedule</h6>
+                        <div class="card left explore-card">
+                            <div id="explore-2" class="card-container uk-position-relative uk-position-center">
+                                <h6 class="small-text left text-card">...</h6>
+                                <h6 class="small-text right text-card">...</h6>
+                                <h4 class="small-header" style="text-align:center"></h4>
+                                <h6 class="small-text footer" style="text-align:center">...</h6>
                             </div>
                         </div>
                     </div>
 
-                    <div id="expanded-schedule-cards" class="hidden"> 
+                    <div id="expanded-schedule-cards" class="hidden">
                         <!--Yesterday Card-->
-                        <div class="card left card-acas">
-                            <div class="card-container uk-position-relative uk-position-center">
-                                <h6 class="small-text left text-card">Wednesday</h6>
-                                <h6 class="small-text right text-card">Jan. 29</h6>
-                                <h4 class="small-header acas" style="text-align:center">ABCD</h4>
-                                <h6 class="small-text " style="text-align:center">Academic Assembly</h6>
+                        <div id="explore-3" class="card left explore-card">
+                            <div class="card-container uk-position-relative uk-position-center ">
+                                <h6 class="small-text left text-card">...</h6>
+                                <h6 class="small-text right text-card">...</h6>
+                                <h4 class="small-header" style="text-align:center"></h4>
+                                <h6 class="small-text footer" style="text-align:center">...</h6>
                             </div>
                         </div>
                         <!--Today Card-->
-                        <div class="card left">
-                            <div class="card-container uk-position-relative uk-position-center">
-                                <h6 class="small-text left text-card">Thursday</h6>
-                                <h6 class="small-text right text-card">Jan. 30</h6>
-                                <h4 class="small-header" style="text-align:center">EFGH</h4>
-                                <h6 class="small-text " style="text-align:center">Regular Schedule</h6>
+                        <div class="card left explore-card">
+                            <div id="explore-4"
+                                class="card-container uk-position-relative uk-position-center ">
+                                <h6 class="small-text left text-card">...</h6>
+                                <h6 class="small-text right text-card">...</h6>
+                                <h4 class="small-header" style="text-align:center"></h4>
+                                <h6 class="small-text footer" style="text-align:center">...</h6>
                             </div>
                         </div>
                         <!--Tomorrow Card-->
-                        <div class="card left">
-                            <div class="card-container uk-position-relative uk-position-center">
-                                <h6 class="small-text left text-card">Friday</h6>
-                                <h6 class="small-text right text-card">Jan. 31</h6>
-                                <h4 class="small-header" style="text-align:center">BCDA</h4>
-                                <h6 class="small-text " style="text-align:center">Regular Schedule</h6>
+                        <div class="card left explore-card">
+                            <div id="explore-5"
+                                class="card-container uk-position-relative uk-position-center ">
+                                <h6 class="small-text left text-card">...</h6>
+                                <h6 class="small-text right text-card">...</h6>
+                                <h4 class="small-header" style="text-align:center"></h4>
+                                <h6 class="small-text footer" style="text-align:center">...</h6>
                             </div>
                         </div>
                     </div>
@@ -96,42 +113,29 @@
                     </div>
 
                     <div id="social-media-feeds">
-                        <div class="uk-position-relative uk-visible-toggle" tabindex="-1" uk-slideshow="animation: push; autoplay: true; autoplay-interval: 3000; pause-on-hover: true">
+                        <div class="uk-position-relative uk-visible-toggle" tabindex="-1"
+                            uk-slideshow="animation: push; autoplay: true; autoplay-interval: 3000; pause-on-hover: true">
 
                             <ul style="border-radius: 8px;" class="uk-slideshow-items">
                                 <li>
-                                    <img src="https://dpt5udl8tkpo9.cloudfront.net/slimproxy/?src=https%3A%2F%2Fscontent.xx.fbcdn.net%2Fv%2Ft51.2885-15%2F74947253_460190621589980_3451079140841717726_n.jpg%3F_nc_ohc%3Dwnsj1kVdUBsAX846Avw%26_nc_ht%3Dscontent.xx%26oh%3D4ab32297a06be93e188a95bd7896eb16%26oe%3D5ECF2C74&w=&h=&q=85&nu=1&salt=&key=47dcec2dc064005e9048dc14171367c8" alt="" uk-cover>
-                                    <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-padding-remove">
-                                        <p class="uk-margin-remove">Down 1-0 with the odds stacked against them the staff were able to take 2 straight and win the Christmas Dodgeball title today! #RINGSZN 💍💍 #TeachersRule</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <img src="res/imgs/test.jpg" alt="" uk-cover>
-                                    <div class="uk-position-bottom uk-position-medium uk-text-center uk-light">
-                                        <h3 class="uk-margin-remove">Bottom</h3>
-                                        <p class="uk-margin-remove">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <img src="res/imgs/test.jpg" alt="" uk-cover>
-                                    <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center">
-                                        <p class="uk-margin-remove">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <img src="res/imgs/test.jpg" alt="" uk-cover>
-                                    <div class="uk-overlay uk-overlay-default uk-position-bottom-right uk-position-small">
-                                        <h3 class="uk-margin-remove">Overlay Bottom Right</h3>
-                                        <p class="uk-margin-remove">Lorem ipsum dolor sit amet.</p>
+                                    <img src="https://dpt5udl8tkpo9.cloudfront.net/slimproxy/?src=https%3A%2F%2Fscontent.xx.fbcdn.net%2Fv%2Ft51.2885-15%2F74947253_460190621589980_3451079140841717726_n.jpg%3F_nc_ohc%3Dwnsj1kVdUBsAX846Avw%26_nc_ht%3Dscontent.xx%26oh%3D4ab32297a06be93e188a95bd7896eb16%26oe%3D5ECF2C74&w=&h=&q=85&nu=1&salt=&key=47dcec2dc064005e9048dc14171367c8"
+                                        alt="" uk-cover>
+                                    <div
+                                        class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-padding-remove">
+                                        <p class="uk-margin-remove">Down 1-0 with the odds stacked against them the
+                                            staff were able to take 2 straight and win the Christmas Dodgeball title
+                                            today! #RINGSZN 💍💍 #TeachersRule</p>
                                     </div>
                                 </li>
                             </ul>
-                        
+
                             <div class="uk-light">
-                                <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-                                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+                                <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#"
+                                    uk-slidenav-previous uk-slideshow-item="previous"></a>
+                                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#"
+                                    uk-slidenav-next uk-slideshow-item="next"></a>
                             </div>
-                        
+
                         </div>
 
                     </div>
@@ -139,77 +143,45 @@
                 <!--Schedule Tab-->
                 <div id="tab-1" class="hidden">
                     <h3 class="main-header">Schedule</h3>
-                    
-
                     <div class="left" name="col-1">
                         <div style="width: 130px; height:auto;" class="card no-hover">
                             <div class="card-container uk-position-relative uk-position-left">
-                                <h6 class="medium-text " style="text-align:left">Day 2</h6>
-                                <h4 class="small-header" style="text-align:left">GHEF</h4>
+                                <h6 id="schedule-dotw" class="medium-text lighter" style="text-align:center">...</h6>
+                                <span>
+                                    <button class="default" id="schedule-prev" style="float:left" disabled>&laquo;</button>
+                                    <button class="default" id="schedule-next" style="float:right" disabled>&raquo;</button>
+                                </span>
+                                <h6 id="schedule-d" class="small-header" style="text-align:center">...</h6>
+
+
                             </div>
                         </div>
-                        
-                        <div style="width: 130px; height:auto; margin-top: 5px; position: relative;" class="card no-hover">
+                        <div style="width: 130px; height:auto;" class="card no-hover">
+                            <div class="card-container uk-position-relative uk-position-left">
+                                <h6 id="schedule-day" class="medium-text" style="text-align:left">...</h6>
+                                <h4 id="schedule-rotation" class="small-header" style="text-align:left">----</h4>
+                            </div>
+                        </div>
+
+                        <div style="width: 130px; height:auto; margin-top: 5px; position: relative;"
+                            class="card no-hover">
                             <div class="card-container uk-position-relative uk-position-left">
                                 <h6 class="medium-text " style="text-align:left">Events</h6>
                                 <table class="highlighted">
-                                    <tbody>
-                                        
-                                        <tr>
-                                            <td>Immunizations</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Another Cool Event</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Wow this is a very eventful day!</td>
-                                        </tr>
+                                    <tbody id="schedule-events">
                                     </tbody>
                                 </table>
-                               
+
                             </div>
                         </div>
                     </div>
-                
-                        <input style="position:absolute; right: 15px; top: 10px" min="2019-09-03" max="2020-06-29" type="date" name="schedule-date" id="schedule-date">
-              
+
                     <div style="width: 215px; height:auto;" class="card left no-hover">
                         <div class="card-container uk-position-relative uk-position-left">
-                            <h6 class="medium-text " style="text-align:left">Regular Schedule</h6>
+                            <h6 id="schedule-label" class="medium-text" style="text-align:left">...</h6>
                             <table class="highlighted" style="width: 100%; height:100%;">
-                                <tbody>
-                                    <tr>
-                                        <td>7:30 - 8:20</td>
-                                        <td>Morning X Block</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8:25 - 9:40</td>
-                                        <td>Block G</td>
-                                    </tr>
-                                    <tr>
-                                        <td>9:45 - 11:00</td>
-                                        <td>Block H</td>
-                                    </tr>
-                                    <tr>
-                                        <td>11:00 - 11:15</td>
-                                        <td>Break</td>
-                                    </tr>
-                                    <tr>
-                                        <td>11:20 - 12:35</td>
-                                        <td>Block E</td>
-                                    </tr>
-                                    <tr>
-                                        <td>12:35 - 1:20</td>
-                                        <td>Lunch</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1:25 - 2:40</td>
-                                        <td>Block F</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2:40 - 3:30</td>
-                                        <td>Afternoon Y Block</td>
-                                    </tr>
+                                <tbody id="schedule-table">
+
                                 </tbody>
                             </table>
                         </div>
@@ -217,38 +189,79 @@
                 </div>
                 <div id="tab-2" class="hidden">
                     <h3 class="main-header">Calendar</h3>
+                    <div style="width: calc(100% - 15px); height: 100%" class="card">
+                        <table class="highlighted" style="width: 100%">
+                            <tbody id="calendar-table">
 
-                    <iframe style="width:380px; height: 300px;"src="https://calendar.google.com/calendar/embed?src=my.stmc.bc.ca_hj6o0nrlt2leful1rbeo3u4dos%40group.calendar.google.com&ctz=America%2FVancouver"></iframe>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
                 <div id="tab-3" class="hidden">
-                    <h3 class="main-header">Notifications</h3>
+                        <h3 class="main-header center">Notifications</h3>
+                    
+                        <button title="Clear All Notifications" id="notifications-clear" class="primary" style="position: absolute; right: 5px; bottom:5px; z-index: 1; padding: 8px;"><span uk-icon="icon: fa-trash-alt"></span></button>
+                    
+                    <div id="notification-body">
+                        <!-- <div style="text-align:center">
+                            <br>
+                            <h6 class="small-header">No notifications</h6>
+                        </div> -->
+                        <!-- <div class="card left notification-card">
+                            <div class="card-container uk-position-relative uk-position-left ">
+                                <div>
+                                    <h6 class="left text-card">Title</h6>
+                                    <h6 class="small-text right text-card">Mar. 7</h6>
+                                </div><br>
+                                <h6 class="small-text ">Test</h6>
+
+                               
+                            </div>
+                        </div> -->
+
+                        <!-- <div class="uk-card uk-card-default uk-width-1-2@m" style="background-color:var(--default); padding-bottom: 5px">
+                            <div class="uk-card-header" style="padding:5px;border:none;">
+                                <div class="uk-grid-small uk-flex-middle" uk-grid>
+                                    <div class="uk-width-auto">
+                                        <img class="uk-border-circle" width="40" height="40"
+                                            src="res/imgs/icons/icon_128.png">
+                                    </div>
+                                    <div class="uk-width-expand" style="padding:0; margin:0">
+                                        <h5 class="small-header uk-margin-remove-bottom left">
+                                            <b>Lunch Announcements</b></h5>
+                                        <p class="uk-text-meta uk-margin-remove-top right" style="padding-right:5px">
+                                            12:35 PM</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uk-card-body" style="padding: 0px 15px 10px 15px; border:none;">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt.</p>
+                            </div>
+                        </div> -->
+
+                          <!-- <div class="uk-card-footer uk-padding-remove" style="border:none;">
+                                <div style="text-align:center">
+                                    <button title="Expand" class="primary"><span uk-icon="icon: chevron-down"></span></button>
+                                </div>
+                            </div> -->
+                    </div>
                 </div>
                 <div id="tab-4" class="hidden">
                     <h3 class="main-header">Resources</h3>
+                    <div class="card">
+                        Test
+                    </div>
                 </div>
                 <div id="tab-5" class="hidden">
                     <h3 class="main-header">More</h3>
+                    <button class="default" id="more-toggle">Toggle Dark Mode </button>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <!--BEGIN JS-->
-    <!--Import UIKit-->
-    
-    <script type="text/javascript" src="res/js/uikit.min.js"></script>
-    <script type="text/javascript" src="res/js/icons.js"></script>
-    <script type="text/javascript" src="res/js/uikit-icons.min.js"></script>
-   
-    <!--Date Picker-->
-    <script type="text/javascript" src="res/js/datepicker.min.js"></script>
-
-
-    <!--Import custom JS-->
-    <script type="text/javascript" src="res/js/popup.js"></script>
-    <script type="text/javascript" src="res/js/explore.js"></script>
-    <script type="text/javascript" src="res/js/schedule.js"></script>
 
 </body>
 

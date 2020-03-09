@@ -6,16 +6,20 @@
 
 :root {
     --default: #ffffff;
-    --default-inv: #909090;
+    --default-light: #909090;
+    --default-inv: #000000;
     --stmc-red: #ab2c29;
+    --stmc-background: #ede6d2;
 }
 
 [data-theme="dark"] {
     --default: #252526;
+    --default-light: #b0b0b0;
     --default-inv: #ffffff;
-    --stmc-red: #ab2c29;
-}
+    --stmc-red: #7a0604;
+    --stmc-background: #2e2e2e;
 
+}
 
 /* Change scroll bar appearance */
 
@@ -24,7 +28,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--default-inv);
+    background: var(--default-light);
     opacity: 0.5;
 }
 
@@ -42,7 +46,7 @@
 }
 
 #app-content {
-    background-color: #ede6d2;
+    background-color: var(--stmc-background);
     float: right;
     height: 300px;
     overflow-x: hidden;
@@ -51,7 +55,7 @@
 }
 
 #app-sidebar {
-    background: linear-gradient(90deg, #AB2C29 0%, rgb(200, 0, 0) 100%);
+    background: linear-gradient(90deg,var(--stmc-red) 0%, rgb(200, 0, 0) 100%);
     /*background-color: var(--stmc-red);*/
     float: left;
     height: 300px;
@@ -77,6 +81,19 @@ body {
 
 button {
     outline: none;
+}
+
+button.default {
+    background-color: var(--default);
+    color: var(--default-inv);
+    border-radius: 4px;
+   /* border-color: var(default-inv);*/
+    border: 1px solid var(--stmc-background );
+    outline: var(--default-inv);
+} 
+
+button.padded {
+    padding: 5px;
 }
 
 button.sidebar {
@@ -116,11 +133,14 @@ button::after {
 h4.acas {
     color:var(--stmc-red);
 }
+td {
+    color: var(--default-inv) !important;
+}
 
 .card {
     margin: 3px;
     padding: 5px;
-    background-color: white;
+    background-color: var(--default);
     border-radius: 5px;
     width: 110px;
     height: 50px;
@@ -159,10 +179,17 @@ h1, h2, h3, h4, h5, h6 {
 .main-header {
     font-family: Tahoma, sans-serif;
     font-weight: 900;
-    color: black; 
+    color:var(--default-inv); 
+}
+.notification-card {
+    width: calc(100% - 15px);
 }
 .left {
     float: left;
+}
+
+.lighter {
+    color: var(--default-light) !important ;
 }
 
 .right {
@@ -172,7 +199,7 @@ h1, h2, h3, h4, h5, h6 {
 .small-header {
     font-weight: bold;
     margin-top: 0;
-    color: black;
+    color:var(--default-inv);
 }
 .social-body {
     float: left;
@@ -184,6 +211,7 @@ h1, h2, h3, h4, h5, h6 {
 .small-text {
     font-weight: bold;
     font-size: 8px;
+    color: var(--default-light);
 }
 
 .medium-text {
@@ -210,7 +238,15 @@ h1, h2, h3, h4, h5, h6 {
 } */
 
 table.highlighted tr:nth-child(even) {
-    background-color: rgb(225, 225, 225);
+    background-color: var(--stmc-background);
+}
+
+table.calendar tr:nth-child(even) {
+    background-color: var(--default-light);
+}
+
+table.highlighted td {
+    padding: 3px;
 }
 
 input[type="date"] {

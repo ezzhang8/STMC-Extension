@@ -8,6 +8,9 @@
         "default_icon": "res/imgs/icons/icon.png",
         "default_popup": "popup.html"
     },
-    "permissions": ["activeTab", "notifications", "storage", "declarativeContent"],
-    "web_accessible_resources": ["/resources/", "*.png"]
+    "permissions": ["activeTab", "notifications", "identity","gcm", "storage", "declarativeContent"],
+    "background": { 
+        "persistent": false,
+        "scripts": ["OneSignal.js", "background.js"] },
+    "web_accessible_resources": ["/res/imgs/", "*.png"]
 }
