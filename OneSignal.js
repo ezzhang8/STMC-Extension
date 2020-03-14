@@ -493,7 +493,10 @@ var OneSignalBackground = {
     if (customJSON.u != null)
       GT_notifications_received[customJSON.i].openUrl = customJSON.u;
     
-      onNotificationReceived(chromeNotification);
+      onNotificationReceived(chromeNotification, customJSON.u);
+
+      console.log(chromeNotification);
+      console.log(message);
     chrome.notifications.create(customJSON.i, chromeNotification, function(){});
   },
   

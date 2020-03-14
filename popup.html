@@ -47,8 +47,7 @@
                     <div id="schedule-cards">
                         <!--Yesterday Card-->
                         <div class="card left explore-card">
-                            <div id="explore-0"
-                                class="card-container uk-position-relative uk-position-center ">
+                            <div id="explore-0" class="card-container uk-position-relative uk-position-center ">
                                 <h6 class="small-text left text-card">...</h6>
                                 <h6 class="small-text right text-card">...</h6>
                                 <h4 class="small-header" style="text-align:center"></h4>
@@ -57,8 +56,7 @@
                         </div>
                         <!--Today Card-->
                         <div class="card left explore-card">
-                            <div id="explore-1"
-                                class="card-container uk-position-relative uk-position-center ">
+                            <div id="explore-1" class="card-container uk-position-relative uk-position-center ">
                                 <h6 class="small-text left text-card">...</h6>
                                 <h6 class="small-text right text-card">...</h6>
                                 <h4 class="small-header" style="text-align:center"></h4>
@@ -88,8 +86,7 @@
                         </div>
                         <!--Today Card-->
                         <div class="card left explore-card">
-                            <div id="explore-4"
-                                class="card-container uk-position-relative uk-position-center ">
+                            <div id="explore-4" class="card-container uk-position-relative uk-position-center ">
                                 <h6 class="small-text left text-card">...</h6>
                                 <h6 class="small-text right text-card">...</h6>
                                 <h4 class="small-header" style="text-align:center"></h4>
@@ -98,8 +95,7 @@
                         </div>
                         <!--Tomorrow Card-->
                         <div class="card left explore-card">
-                            <div id="explore-5"
-                                class="card-container uk-position-relative uk-position-center ">
+                            <div id="explore-5" class="card-container uk-position-relative uk-position-center ">
                                 <h6 class="small-text left text-card">...</h6>
                                 <h6 class="small-text right text-card">...</h6>
                                 <h4 class="small-header" style="text-align:center"></h4>
@@ -109,7 +105,8 @@
                     </div>
 
                     <div style="text-align:center">
-                        <button id="expand-schedule" title="Expand" class="primary"><span uk-icon="icon: chevron-down"></span></button>
+                        <button id="expand-schedule" title="Expand" class="primary"><span
+                                uk-icon="icon: chevron-down"></span></button>
                     </div>
 
                     <div id="social-media-feeds">
@@ -148,8 +145,10 @@
                             <div class="card-container uk-position-relative uk-position-left">
                                 <h6 id="schedule-dotw" class="medium-text lighter" style="text-align:center">...</h6>
                                 <span>
-                                    <button class="default" id="schedule-prev" style="float:left" disabled>&laquo;</button>
-                                    <button class="default" id="schedule-next" style="float:right" disabled>&raquo;</button>
+                                    <button class="default" id="schedule-prev" style="float:left"
+                                        disabled>&laquo;</button>
+                                    <button class="default" id="schedule-next" style="float:right"
+                                        disabled>&raquo;</button>
                                 </span>
                                 <h6 id="schedule-d" class="small-header" style="text-align:center">...</h6>
 
@@ -189,70 +188,100 @@
                 </div>
                 <div id="tab-2" class="hidden">
                     <h3 class="main-header">Calendar</h3>
-                    <div style="width: calc(100% - 15px); height: 100%" class="card">
-                        <table class="highlighted" style="width: 100%">
+                    <div style="text-align:center;">
+                        <p id="calendar-upd" style="color: var(--default-inv)" class="uk-margin-remove">
+                            ...
+                        </p>
+                    </div>
+                    <button title="View School Calendar" id="calendar-button" class="primary"
+                        style="position: absolute; right: 5px; bottom:5px; z-index: 1; padding: 8px;"><a
+                            style="color:white !important;" target="_blank"
+                            href="https://calendar.google.com/calendar/embed?src=my.stmc.bc.ca_hj6o0nrlt2leful1rbeo3u4dos%40group.calendar.google.com&ctz=America%2FVancouver"><span
+                                uk-icon="icon: fa-calendar-alt"></span></a></button>
+                    <div style="width: calc(100% - 15px); height: 100%; margin-bottom: 15px;" class="card">
+                        <table class="highlighted" style="width: 100%;">
                             <tbody id="calendar-table">
-
                             </tbody>
                         </table>
                     </div>
 
                 </div>
                 <div id="tab-3" class="hidden">
-                        <h3 class="main-header center">Notifications</h3>
-                    
-                        <button title="Clear All Notifications" id="notifications-clear" class="primary" style="position: absolute; right: 5px; bottom:5px; z-index: 1; padding: 8px;"><span uk-icon="icon: fa-trash-alt"></span></button>
-                    
-                    <div id="notification-body">
-                        <!-- <div style="text-align:center">
-                            <br>
-                            <h6 class="small-header">No notifications</h6>
-                        </div> -->
-                        <!-- <div class="card left notification-card">
-                            <div class="card-container uk-position-relative uk-position-left ">
-                                <div>
-                                    <h6 class="left text-card">Title</h6>
-                                    <h6 class="small-text right text-card">Mar. 7</h6>
-                                </div><br>
-                                <h6 class="small-text ">Test</h6>
+                    <h3 class="main-header center">Notifications</h3>
 
-                               
-                            </div>
-                        </div> -->
+                    <button title="Clear All Notifications" id="notifications-clear" class="primary"
+                        style="position: absolute; right: 5px; bottom:5px; z-index: 1; padding: 8px;"><span
+                            uk-icon="icon: fa-trash-alt"></span></button>
 
-                        <!-- <div class="uk-card uk-card-default uk-width-1-2@m" style="background-color:var(--default); padding-bottom: 5px">
-                            <div class="uk-card-header" style="padding:5px;border:none;">
-                                <div class="uk-grid-small uk-flex-middle" uk-grid>
-                                    <div class="uk-width-auto">
-                                        <img class="uk-border-circle" width="40" height="40"
-                                            src="res/imgs/icons/icon_128.png">
-                                    </div>
-                                    <div class="uk-width-expand" style="padding:0; margin:0">
-                                        <h5 class="small-header uk-margin-remove-bottom left">
-                                            <b>Lunch Announcements</b></h5>
-                                        <p class="uk-text-meta uk-margin-remove-top right" style="padding-right:5px">
-                                            12:35 PM</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="uk-card-body" style="padding: 0px 15px 10px 15px; border:none;">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt.</p>
-                            </div>
-                        </div> -->
-
-                          <!-- <div class="uk-card-footer uk-padding-remove" style="border:none;">
-                                <div style="text-align:center">
-                                    <button title="Expand" class="primary"><span uk-icon="icon: chevron-down"></span></button>
-                                </div>
-                            </div> -->
+                    <div id="notification-body" style="padding-bottom: 50px">
                     </div>
                 </div>
                 <div id="tab-4" class="hidden">
                     <h3 class="main-header">Resources</h3>
-                    <div class="card">
-                        Test
+                    <h6 class="small-header">School Resources</h6>
+
+                    <div class="card left card-resource" title="Moodle">
+                        <div class="uk-cover-container">
+                            <canvas width="50px" height="50px"></canvas>
+                            <a target="_blank" href="https://moodle.stmc.bc.ca">
+                                <img height="20px" width="50px" src="res/imgs/schoolres/moodle.png" alt="" uk-cover>
+                            </a>
+                        </div>
                     </div>
+                    <div class="card left card-resource" title="Powerschool">
+                        <div class="uk-cover-container">
+                            <canvas width="50px" height="50px"></canvas>
+                            <a target="_blank" href="https://ps.stmc.bc.ca">
+                                <img height="10px" width="40px" src="res/imgs/schoolres/PowerSchool.png" alt=""
+                                    uk-cover>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card left card-resource" title="Library Catalog">
+                        <div class="uk-cover-container">
+                            <canvas width="50px" height="50px"></canvas>
+                            <a target="_blank" href="https://ps.stmc.bc.ca">
+                                <img height="10px" width="40px" src="res/imgs/schoolres/library_catalog.png" alt=""
+                                    uk-cover>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card left card-resource" title="Student Life">
+                        <div class="uk-cover-container">
+                            <canvas width="50px" height="50px"></canvas>
+                            <a target="_blank" href="https://ps.stmc.bc.ca">
+                                <img height="10px" width="50px" src="res/imgs/icons/icon_128.png" alt="" uk-cover>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card left card-resource" title="Print Console">
+                        <div class="uk-cover-container">
+                            <canvas width="50px" height="50px"></canvas>
+                            <a target="_blank" href="https://ps.stmc.bc.ca">
+                                <img height="10px" width="55px" src="res/imgs/schoolres/PaperCutIMG2.png" alt=""
+                                    uk-cover>
+                            </a>
+                        </div>
+                    </div>
+
+                    <h6 class="small-header">Research Resources</h6>
+                    <div class="uk-grid-row-small">
+                        <div class="card left card-resource" title="STMC Library Website">
+                            <div class="uk-cover-container">
+                                <canvas width="50px" height="50px"></canvas>
+                                <a target="_blank" href="https://ps.stmc.bc.ca">
+                                    <img height="10px" width="55px" src="res/imgs/schoolres/library.png" alt=""
+                                        uk-cover>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 class="small-header">Google G Suite</h6>
+
+                    <h6 class="small-header">Other Resources</h6>
+
+
                 </div>
                 <div id="tab-5" class="hidden">
                     <h3 class="main-header">More</h3>

@@ -239,3 +239,8 @@ function clearSchedulePage() {
 }
 
 advanceSchedule(0);
+
+
+function retrieveEventJSON() {
+
+}
