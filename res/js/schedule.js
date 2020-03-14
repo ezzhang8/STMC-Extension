@@ -48,8 +48,6 @@ const massSchedule = {
     "Afternoon Y Block": "2:40-4:00"
 };
 
-const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 let currentScheduleIncrement = 0;
 

@@ -1,4 +1,7 @@
 const sidebarButtons = document.getElementsByClassName("sidebar");
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
 
 document.getElementById("more-toggle").addEventListener("click", () => {
     toggleDarkMode();
