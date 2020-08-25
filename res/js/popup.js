@@ -65,5 +65,11 @@ function initializeTheme() {
     });
 }
 
+function getEmail() {
+    chrome.identity.getProfileUserInfo(function(userInfo) {
+        console.log(userInfo);
+    });
+}
+
 initializeTheme();
 

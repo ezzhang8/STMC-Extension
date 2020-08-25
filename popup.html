@@ -1,6 +1,13 @@
 <!DOCTYPE html>
-<html data-theme="light">
+<!-- 
+    Hi! If you're reading this, then you must be pretty tech savvy. 
+    Opening Inspect Element is probably one of the first things I did that got me into web development and programming.
 
+    If you're interested in 
+-->
+
+
+<html data-theme="light">
 <head>
     <meta charset="UTF-8">
     <!--Import UIKit-->
@@ -11,12 +18,12 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 
-
+    <!--Import UIKit Javascript-->
     <script type="text/javascript" async src="res/js/uikit.min.js"></script>
-    <script type="text/javascript" defer src="res/js/uikit-icons.min.js"></script>
+    <script type="text/javascript" src="res/js/uikit-icons.min.js"></script>
 
+    <!--Import custom icons-->
     <script type="text/javascript" src="res/js/icons.js"></script>
-
 
     <!--Import custom JS-->
     <script type="text/javascript" defer src="res/js/popup.js"></script>
@@ -27,7 +34,6 @@
 
 
 </head>
-
 <body>
     <div id="main-container">
         <div id="app-sidebar">
@@ -109,20 +115,65 @@
                                 uk-icon="icon: chevron-down"></span></button>
                     </div>
 
+                    <h4 class="main-header">Houses</h4>
+
                     <div id="social-media-feeds">
                         <div class="uk-position-relative uk-visible-toggle" tabindex="-1"
-                            uk-slideshow="animation: push; autoplay: true; autoplay-interval: 3000; pause-on-hover: true">
+                            uk-slideshow="animation: push; autoplay: false; autoplay-interval: 3000; pause-on-hover: true">
 
-                            <ul style="border-radius: 8px;" class="uk-slideshow-items">
+                            <ul style="border-radius: 8px; height: 275px" class="uk-slideshow-items">
+
                                 <li>
-                                    <img src="https://dpt5udl8tkpo9.cloudfront.net/slimproxy/?src=https%3A%2F%2Fscontent.xx.fbcdn.net%2Fv%2Ft51.2885-15%2F74947253_460190621589980_3451079140841717726_n.jpg%3F_nc_ohc%3Dwnsj1kVdUBsAX846Avw%26_nc_ht%3Dscontent.xx%26oh%3D4ab32297a06be93e188a95bd7896eb16%26oe%3D5ECF2C74&w=&h=&q=85&nu=1&salt=&key=47dcec2dc064005e9048dc14171367c8"
-                                        alt="" uk-cover>
-                                    <div
-                                        class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-padding-remove">
-                                        <p class="uk-margin-remove">Down 1-0 with the odds stacked against them the
-                                            staff were able to take 2 straight and win the Christmas Dodgeball title
-                                            today! #RINGSZN 💍💍 #TeachersRule</p>
+                                    <div class="house-bg">
+                                        <table class="house-table" style="width:100%; text-align: left; padding: 15px">
+                                            <tr>
+                                                <td style="width: 20%; text-align: center">
+                                                    <img class="crest left" src="res/imgs/house/canterbury.png">
+                                                    <div class="winner-bg score-div" style="width: 100%;">
+                                                        <h5 class="house-title small-header white left">Canterbury</h5>
+                                                        <span class="score-span right white">3240</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 20%; text-align: center">
+                                                    <img class="crest left" src="res/imgs/house/dublin.png">
+                                                    <div class="other-bg score-div" style="width: 89%;">
+                                                        <h5 class="house-title small-header white left">Dublin</h5>
+                                                        <span class="score-span right white">2875</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 20%; text-align: center">
+                                                    <img class="crest left" src="res/imgs/house/limerick.png">
+                                                    <div class="other-bg score-div" style="width: 82%;">
+                                                        <h5 class="house-title small-header white left">Limerick</h5>
+                                                        <span class="score-span right white">2669</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 20%; text-align: center">
+                                                    <img class="crest left" src="res/imgs/house/london.png">
+                                                    <div class="other-bg score-div" style="width: 76%;">
+                                                        <h5 class="house-title small-header white left">London</h5>
+                                                        <span class="score-span right white">2441</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 20%; text-align: center">
+                                                    <img class="crest left" src="res/imgs/house/waterford.png">
+                                                    <div class="other-bg score-div" style="width: 68%;">
+                                                        <h5 class="house-title small-header white left">Waterford</h5>
+                                                        <span class="score-span right white">2210</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </div>
+
                                 </li>
                             </ul>
 
@@ -193,11 +244,12 @@
                             ...
                         </p>
                     </div>
-                    <button title="View School Calendar" id="calendar-button" class="primary"
-                        style="position: absolute; right: 5px; bottom:5px; z-index: 1; padding: 8px;"><a
-                            style="color:white !important;" target="_blank"
+                    <button title="View School Calendar" id="calendar-button" class="primary float">
+                        <a style="color:white !important;" target="_blank"
                             href="https://calendar.google.com/calendar/embed?src=my.stmc.bc.ca_hj6o0nrlt2leful1rbeo3u4dos%40group.calendar.google.com&ctz=America%2FVancouver"><span
-                                uk-icon="icon: fa-calendar-alt"></span></a></button>
+                                uk-icon="icon: fa-calendar-alt"></span></a>
+                    </button>
+
                     <div style="width: calc(100% - 15px); height: 100%; margin-bottom: 15px;" class="card">
                         <table class="highlighted" style="width: 100%;">
                             <tbody id="calendar-table">
@@ -209,78 +261,248 @@
                 <div id="tab-3" class="hidden">
                     <h3 class="main-header center">Notifications</h3>
 
-                    <button title="Clear All Notifications" id="notifications-clear" class="primary"
-                        style="position: absolute; right: 5px; bottom:5px; z-index: 1; padding: 8px;"><span
+                    <button title="Clear All Notifications" id="notifications-clear" class="primary float"><span
                             uk-icon="icon: fa-trash-alt"></span></button>
 
                     <div id="notification-body" style="padding-bottom: 50px">
                     </div>
                 </div>
+
                 <div id="tab-4" class="hidden">
                     <h3 class="main-header">Resources</h3>
                     <h6 class="small-header">School Resources</h6>
 
-                    <div class="card left card-resource" title="Moodle">
-                        <div class="uk-cover-container">
-                            <canvas width="50px" height="50px"></canvas>
-                            <a target="_blank" href="https://moodle.stmc.bc.ca">
-                                <img height="20px" width="50px" src="res/imgs/schoolres/moodle.png" alt="" uk-cover>
-                            </a>
+                    <div class="uk-grid-column-collapse uk-child-width-1-5 uk-text-center" uk-grid>
+                        <div>
+                            <div class="card card-resource" title="Moodle">
+                                <a target="_blank" href="https://moodle.stmc.bc.ca">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="20px" width="50px" src="res/imgs/schoolres/moodle.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card left card-resource" title="Powerschool">
-                        <div class="uk-cover-container">
-                            <canvas width="50px" height="50px"></canvas>
-                            <a target="_blank" href="https://ps.stmc.bc.ca">
-                                <img height="10px" width="40px" src="res/imgs/schoolres/PowerSchool.png" alt=""
-                                    uk-cover>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card left card-resource" title="Library Catalog">
-                        <div class="uk-cover-container">
-                            <canvas width="50px" height="50px"></canvas>
-                            <a target="_blank" href="https://ps.stmc.bc.ca">
-                                <img height="10px" width="40px" src="res/imgs/schoolres/library_catalog.png" alt=""
-                                    uk-cover>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card left card-resource" title="Student Life">
-                        <div class="uk-cover-container">
-                            <canvas width="50px" height="50px"></canvas>
-                            <a target="_blank" href="https://ps.stmc.bc.ca">
-                                <img height="10px" width="50px" src="res/imgs/icons/icon_128.png" alt="" uk-cover>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card left card-resource" title="Print Console">
-                        <div class="uk-cover-container">
-                            <canvas width="50px" height="50px"></canvas>
-                            <a target="_blank" href="https://ps.stmc.bc.ca">
-                                <img height="10px" width="55px" src="res/imgs/schoolres/PaperCutIMG2.png" alt=""
-                                    uk-cover>
-                            </a>
-                        </div>
-                    </div>
-
-                    <h6 class="small-header">Research Resources</h6>
-                    <div class="uk-grid-row-small">
-                        <div class="card left card-resource" title="STMC Library Website">
-                            <div class="uk-cover-container">
-                                <canvas width="50px" height="50px"></canvas>
+                        <div>
+                            <div class="card card-resource" title="PowerSchool">
                                 <a target="_blank" href="https://ps.stmc.bc.ca">
-                                    <img height="10px" width="55px" src="res/imgs/schoolres/library.png" alt=""
-                                        uk-cover>
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="10px" width="40px" src="res/imgs/schoolres/PowerSchool.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card card-resource" title="STMC Library Catalog (Follett Destiny)">
+                                <a target="_blank" href="https://stmc.follettdestiny.ca/">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="10px" width="40px" src="res/imgs/schoolres/follett.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card card-resource" title="Student Life/STMC Student Council">
+                                <a target="_blank" href="https://sites.google.com/stmc.bc.ca/studentlife">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="20px" width="50px" src="res/imgs/icons/icon_128.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card card-resource" title="Print Console (school network only)">
+                                <a target="_blank" href="http://192.168.0.239:9191/">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="20px" width="50px" src="res/imgs/schoolres/PaperCutIMG2.png" alt=""
+                                            uk-cover>
+                                    </div>
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <h6 class="small-header">Google G Suite</h6>
+                    <h6 class="small-header margin-top">Research Resources</h6>
+                    <button title="mySTMC Help Page" class="primary float">
+                        <a style="color:white !important;" target="_blank"
+                            href="http://my.stmc.bc.ca/help_page.html"><span
+                                uk-icon="icon: fa-question-circle"></span></a>
+                    </button>
+                    <div class="uk-grid-column-collapse uk-child-width-1-5 uk-text-center" uk-grid>
+                        <div>
+                            <div class="card card-resource" title="STMC Learning Commons Website">
+                                <a target="_blank" href="https://sites.google.com/stmc.bc.ca/learningcommons">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="20px" width="40px" src="res/imgs/schoolres/library.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card card-resource" title="Research Databases (Learning Commons)">
+                                <a target="_blank"
+                                    href="https://sites.google.com/stmc.bc.ca/learningcommons/research/research-databases">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="20px" width="50px" src="res/imgs/schoolres/research_resources.png"
+                                            alt="" uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card card-resource" title="NoodleTools">
+                                <a target="_blank" href="https://my.noodletools.com/logon/signin">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="20px" width="50px" src="res/imgs/schoolres/NoodleTools.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
 
-                    <h6 class="small-header">Other Resources</h6>
+                    </div>
 
+                    <h6 class="small-header margin-top">Google G Suite</h6>
+                    <div class="uk-grid-row-small uk-grid-column-collapse  uk-child-width-1-5 uk-text-center" uk-grid>
+                        <div>
+                            <div class="card card-resource" title="Gmail">
+                                <a target="_blank" href="https://mail.google.com">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="20px" width="40px" src="res/imgs/schoolres/ggl/mail.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card card-resource" title="Google Calendar">
+                                <a target="_blank" href="https://calendar.google.com">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="20px" width="40px" src="res/imgs/schoolres/ggl/calendar.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card card-resource" title="Google Drive">
+                                <a target="_blank" href="https://drive.google.com">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="20px" width="40px" src="res/imgs/schoolres/ggl/drive.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card card-resource" title="Google Classroom">
+                                <a target="_blank" href="https://classroom.google.com">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="20px" width="40px" src="res/imgs/schoolres/ggl/classroom.png"
+                                            alt="" uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card card-resource" title="Google Keep">
+                                <a target="_blank" href="https://keep.google.com">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="20px" width="40px" src="res/imgs/schoolres/ggl/keep.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card card-resource" title="Google Docs">
+                                <a target="_blank" href="https://docs.google.com">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="30px" width="25px" src="res/imgs/schoolres/ggl/docs.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card card-resource" title="Google Slides">
+                                <a target="_blank" href="https://slides.google.com">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="30px" width="25px" src="res/imgs/schoolres/ggl/slides.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card card-resource" title="Google Sheets">
+                                <a target="_blank" href="https://sheets.google.com">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="30px" width="25px" src="res/imgs/schoolres/ggl/sheets.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card card-resource" title="Google Drawings">
+                                <a target="_blank" href="https://drawings.google.com">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="30px" width="37px" src="res/imgs/schoolres/ggl/drawings.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card card-resource" title="Google Sites">
+                                <a target="_blank" href="https://sites.google.com">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="30px" width="37px" src="res/imgs/schoolres/ggl/sites.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 class="small-header margin-top">Other Resources</h6>
+                    <div class="uk-grid-row-small uk-grid-column-collapse  uk-child-width-1-5 uk-text-center" uk-grid>
+                        <div>
+                            <div class="card card-resource" title="myBlueprint">
+                                <a target="_blank" href="https://app.myblueprint.ca/">
+                                    <div class="uk-cover-container">
+                                        <canvas width="50px" height="50px"></canvas>
+                                        <img height="30px" width="50px" src="res/imgs/schoolres/myBlueprint.png" alt=""
+                                            uk-cover>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
 
                 </div>
                 <div id="tab-5" class="hidden">

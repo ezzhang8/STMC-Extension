@@ -1,9 +1,4 @@
 /* Declaration of variables */
-@font-face {
-    font-family: Trajan;
-    src: url(../fonts/TrajanPro-Regular.ttf);
-}
-
 :root {
     --default: #ffffff;
     --default-light: #909090;
@@ -18,7 +13,6 @@
     --default-inv: #ffffff;
     --stmc-red: #7a0604;
     --stmc-background: #2e2e2e;
-
 }
 
 /* Change scroll bar appearance */
@@ -77,6 +71,7 @@
 
 body {
     background-color: var(--default);
+
 }
 
 button {
@@ -163,6 +158,14 @@ td {
 .card:hover {
     box-shadow: 1px 1px 5px #888888;
     cursor: pointer;
+}
+
+.float {
+    position: absolute; 
+    right: 5px; 
+    bottom:5px; 
+    z-index: 1; 
+    padding: 8px !important;
 }
 
 .no-hover:hover {
@@ -267,4 +270,58 @@ input[type="date"] {
     background-color: #fff;
     padding: 3px 5px;
     box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.margin-top {
+    margin-top: 5px !important;
+}
+
+.white {
+    color: white !important;
+}
+
+.house-table > tbody > tr > td {
+    padding: 5px;
+}
+
+.house-bg {
+    background-image: linear-gradient(90deg, #7a0604 0%, rgb(88, 6, 6) 100%); 
+    width: 100%; 
+    height: 100%
+}
+
+.winner-bg {
+    background-image: linear-gradient(90deg, #b4660c 0%, rgb(255, 136, 0) 100%); 
+    width: 100%; 
+    height: 100%
+}
+.other-bg {
+    background-image: linear-gradient(45deg, #db3535 0%, rgb(155, 38, 38) 100%); 
+    width: 100%; 
+    height: 100%
+}
+
+.score-div {
+    border-radius: 20px; 
+    padding: 5px 0px 5px 15px; 
+    margin-right: 20px; 
+    height: 20px;
+}
+
+.crest {
+    position: relative; 
+    image-rendering: pixelated; 
+    left: -3px;  
+    top: -3px;
+    width: 32px;
+}
+
+span.score-span {
+    padding-top: 2px; 
+    padding-right: 10px;
+}
+
+h5.house-title {
+    text-align: left; 
+    padding-left: 10px;
 }

@@ -23,7 +23,13 @@ function newCalendar() {
         chrome.storage.local.set({"calendar-date": dateRetrieved.toISOString()}, ()=>{});
     
         for (let i = 0; i < events.length; i++) {
-            document.getElementById("calendar-table").insertAdjacentHTML("beforeend", '<tr><td style="text-align: center; padding: 5px;">'+parseDate(events[i].start.date)+'</td><td>'+events[i].summary+'</td></tr>');
+            let date = events[i].start.date;
+
+            if (events[i].start.dateTime != undefined) {
+               date = events[i].start.dateTime.substring(0, 10);
+            }
+
+            document.getElementById("calendar-table").insertAdjacentHTML("beforeend", '<tr><td style="text-align: center; padding: 5px;">'+parseDate(date)+'</td><td>'+events[i].summary+'</td></tr>');
             document.getElementById("calendar-upd").innerHTML = "Last updated: "+dateRetrieved.toString().split(" GMT")[0];
         } 
     });
@@ -36,7 +42,12 @@ function initCalendar() {
         const events = result.calendar;
         if (calendarDateString!= undefined && calendarDateString.toDateString() == currentDate.toDateString() && events != undefined) {
             for (let i = 0; i < events.length; i++) {
-                document.getElementById("calendar-table").insertAdjacentHTML("beforeend", '<tr><td style="text-align: center; padding: 5px;">'+parseDate(events[i].start.date)+'</td><td>'+events[i].summary+'</td></tr>');
+                let date = events[i].start.date;
+
+                if (events[i].start.dateTime != undefined) {
+                date = events[i].start.dateTime.substring(0, 10);
+                }
+                document.getElementById("calendar-table").insertAdjacentHTML("beforeend", '<tr><td style="text-align: center; padding: 5px;">'+parseDate(date)+'</td><td>'+events[i].summary+'</td></tr>');
                 document.getElementById("calendar-upd").innerHTML = "Last updated: "+calendarDateString.toString().split(" GMT")[0];
             } 
         }
@@ -47,4 +58,4 @@ function initCalendar() {
 };
 
 initCalendar();
-
+//newCalendar();
