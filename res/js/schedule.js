@@ -79,7 +79,14 @@ function structureScheduleData(events) {
 
             let object = dayMatrix.find(({ date }) => date == eventDate.toDateString())
 
-            events[i].summary.startsWith("Staff/PLC") ?  object.label = "Late Start" : object.label = events[i].summary;
+            object.label = events[i].summary
+
+            if (events[i].summary.startsWith("Academic Assembly")) {
+                object.label = "Academic Assembly";
+            }  
+            else if (events[i].summary.startsWith("Staff/PLC")) {
+                object.label = "Late Start"
+            }
         }
     }
     return dayMatrix;
@@ -94,15 +101,16 @@ function requestEvents(date) {
     getTextFromFile(API.calendarURL, (response) => {
         const events = JSON.parse(response).items;
 
-        date.setDate(date.getDate() + 1);
-        date.setHours(0);
-        date.setMinutes(0);
-
         for (i = 0; i < events.length; i++) {
-            let eventDate = new Date(events[i].end.date)
+            let eventDate = new Date(events[i].start.date)
+
+            if (events[i].start.dateTime != undefined) {
+                 eventDate = new Date(events[i].start.dateTime.substring(0, 10));
+                 console.log(eventDate)
+            }     
+            eventDate.setDate(eventDate.getDate() + 1);
             eventDate.setHours(0);
             eventDate.setMinutes(0);
-            eventDate.setDate(eventDate.getDate() + 1);
 
             if (eventDate != null && eventDate.toDateString() == date.toDateString() && !events[i].summary.startsWith("Day 1") && !events[i].summary.startsWith("Day 2")) {
                 collectedEvents.push(events[i].summary);
@@ -154,7 +162,7 @@ function advanceSchedule(dateForward) {
         const scheduleJSON = {
             "Regular Schedule": regularSchedule,
             "Mass Schedule": massSchedule,
-            "Academic Assembly Schedule": academicAssembly,
+            "Academic Assembly": academicAssembly,
             "Late Start": lateStart
         }
 

@@ -31,6 +31,7 @@
     <script type="text/javascript" defer src="res/js/calendar.js"></script>
     <script type="text/javascript" defer src="res/js/explore.js"></script>
     <script type="text/javascript" defer src="res/js/notifications.js"></script>
+    <script type="text/javascript" defer src="res/js/resources.js"></script>
 
 
 </head>
@@ -128,7 +129,7 @@
                                             <tr>
                                                 <td style="width: 20%; text-align: center">
                                                     <img class="crest left" src="res/imgs/house/canterbury.png">
-                                                    <div class="winner-bg score-div" style="width: 100%;">
+                                                    <div class="other-bg score-div" style="width: 100%;">
                                                         <h5 class="house-title small-header white left">Canterbury</h5>
                                                         <span class="score-span right white">3240</span>
                                                     </div>
@@ -269,238 +270,12 @@
 
                 <div id="tab-4" class="hidden">
                     <h3 class="main-header">Resources</h3>
-                    <h6 class="small-header">School Resources</h6>
-
-                    <div class="uk-grid-column-collapse uk-child-width-1-5 uk-text-center" uk-grid>
-                        <div>
-                            <div class="card card-resource" title="Moodle">
-                                <a target="_blank" href="https://moodle.stmc.bc.ca">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="20px" width="50px" src="res/imgs/schoolres/moodle.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-resource" title="PowerSchool">
-                                <a target="_blank" href="https://ps.stmc.bc.ca">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="10px" width="40px" src="res/imgs/schoolres/PowerSchool.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-resource" title="STMC Library Catalog (Follett Destiny)">
-                                <a target="_blank" href="https://stmc.follettdestiny.ca/">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="10px" width="40px" src="res/imgs/schoolres/follett.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-resource" title="Student Life/STMC Student Council">
-                                <a target="_blank" href="https://sites.google.com/stmc.bc.ca/studentlife">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="20px" width="50px" src="res/imgs/icons/icon_128.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-resource" title="Print Console (school network only)">
-                                <a target="_blank" href="http://192.168.0.239:9191/">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="20px" width="50px" src="res/imgs/schoolres/PaperCutIMG2.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h6 class="small-header margin-top">Research Resources</h6>
+                    <div id="resources-container"></div>
                     <button title="mySTMC Help Page" class="primary float">
                         <a style="color:white !important;" target="_blank"
                             href="http://my.stmc.bc.ca/help_page.html"><span
                                 uk-icon="icon: fa-question-circle"></span></a>
                     </button>
-                    <div class="uk-grid-column-collapse uk-child-width-1-5 uk-text-center" uk-grid>
-                        <div>
-                            <div class="card card-resource" title="STMC Learning Commons Website">
-                                <a target="_blank" href="https://sites.google.com/stmc.bc.ca/learningcommons">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="20px" width="40px" src="res/imgs/schoolres/library.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-resource" title="Research Databases (Learning Commons)">
-                                <a target="_blank"
-                                    href="https://sites.google.com/stmc.bc.ca/learningcommons/research/research-databases">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="20px" width="50px" src="res/imgs/schoolres/research_resources.png"
-                                            alt="" uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-resource" title="NoodleTools">
-                                <a target="_blank" href="https://my.noodletools.com/logon/signin">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="20px" width="50px" src="res/imgs/schoolres/NoodleTools.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <h6 class="small-header margin-top">Google G Suite</h6>
-                    <div class="uk-grid-row-small uk-grid-column-collapse  uk-child-width-1-5 uk-text-center" uk-grid>
-                        <div>
-                            <div class="card card-resource" title="Gmail">
-                                <a target="_blank" href="https://mail.google.com">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="20px" width="40px" src="res/imgs/schoolres/ggl/mail.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-resource" title="Google Calendar">
-                                <a target="_blank" href="https://calendar.google.com">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="20px" width="40px" src="res/imgs/schoolres/ggl/calendar.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-resource" title="Google Drive">
-                                <a target="_blank" href="https://drive.google.com">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="20px" width="40px" src="res/imgs/schoolres/ggl/drive.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-resource" title="Google Classroom">
-                                <a target="_blank" href="https://classroom.google.com">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="20px" width="40px" src="res/imgs/schoolres/ggl/classroom.png"
-                                            alt="" uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-resource" title="Google Keep">
-                                <a target="_blank" href="https://keep.google.com">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="20px" width="40px" src="res/imgs/schoolres/ggl/keep.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-resource" title="Google Docs">
-                                <a target="_blank" href="https://docs.google.com">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="30px" width="25px" src="res/imgs/schoolres/ggl/docs.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-resource" title="Google Slides">
-                                <a target="_blank" href="https://slides.google.com">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="30px" width="25px" src="res/imgs/schoolres/ggl/slides.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-resource" title="Google Sheets">
-                                <a target="_blank" href="https://sheets.google.com">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="30px" width="25px" src="res/imgs/schoolres/ggl/sheets.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-resource" title="Google Drawings">
-                                <a target="_blank" href="https://drawings.google.com">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="30px" width="37px" src="res/imgs/schoolres/ggl/drawings.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-resource" title="Google Sites">
-                                <a target="_blank" href="https://sites.google.com">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="30px" width="37px" src="res/imgs/schoolres/ggl/sites.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h6 class="small-header margin-top">Other Resources</h6>
-                    <div class="uk-grid-row-small uk-grid-column-collapse  uk-child-width-1-5 uk-text-center" uk-grid>
-                        <div>
-                            <div class="card card-resource" title="myBlueprint">
-                                <a target="_blank" href="https://app.myblueprint.ca/">
-                                    <div class="uk-cover-container">
-                                        <canvas width="50px" height="50px"></canvas>
-                                        <img height="30px" width="50px" src="res/imgs/schoolres/myBlueprint.png" alt=""
-                                            uk-cover>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                     <br>
 
                 </div>
