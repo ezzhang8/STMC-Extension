@@ -106,7 +106,6 @@ function requestEvents(date) {
 
             if (events[i].start.dateTime != undefined) {
                  eventDate = new Date(events[i].start.dateTime.substring(0, 10));
-                 console.log(eventDate)
             }     
             eventDate.setDate(eventDate.getDate() + 1);
             eventDate.setHours(0);

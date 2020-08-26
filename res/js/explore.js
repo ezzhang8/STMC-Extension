@@ -102,4 +102,42 @@ function toggleScheduleCards() {
     }
 }
 
+
+function sortHousesByPoints(a, b) {
+    if ( a.points < b.points ){
+      return 1;
+    }
+    if ( a.points > b.points ){
+      return -1;
+    }
+    return 0;
+}
+
+function loadHouses() {
+    getTextFromFile(API.url+"houses/", (response) => {
+        let housePoints = JSON.parse(response);
+        housePoints.sort(sortHousesByPoints);
+
+        const houseTable = document.getElementById("house-table")
+        for (i=0; i<housePoints.length; i++) {  
+            houseTable.insertAdjacentHTML('beforeend', '<tr><td style="width: 20%; text-align: center"><img class="crest left" src="res/imgs/house/'+housePoints[i].houseName.toLowerCase()+'.png"><div class="other-bg score-div" style="width: 100%;"><h5 class="house-title small-header white left"><a class="white" id="house-'+housePoints[i].houseId+'">'+housePoints[i].houseName+'</a></h5><span class="score-span right white">'+housePoints[i].points+' pts.</span></div></td></tr>')
+            var houseId
+            houseId = housePoints[i].houseId
+            document.getElementById("house-"+housePoints[i].houseId).addEventListener('click', ()=> {
+                console.log(houseId)
+                showHouseTab(1);
+            });
+        }
+    })
+}
+
+function showHouseTab(houseId) {
+    const houseTab = document.getElementById("house-tab");
+    const exploreTab = document.getElementById("tab-0");
+
+    exploreTab.classList.add("hidden");
+    houseTab.classList.remove("hidden");
+}
+
+loadHouses();
 handleEvents();

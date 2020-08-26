@@ -1,3 +1,4 @@
+// JSON structure for resources, separated by section
 const resources = {
     "School Resources": [
         {
@@ -104,18 +105,19 @@ const resources = {
     ]
 }
 
+/**
+ * Loads resources from a JSON object, which enables updating the resources list easily.
+ */
 function loadResources() {
     const container = document.getElementById("resources-container");
     for (const section in resources) {
         container.insertAdjacentHTML('beforeend', '<h6 class="small-header">'+section+"</h6>");
-       // container.insertAdjacentHTML('beforeend', '<div class="uk-grid-column-collapse uk-child-width-1-5 uk-text-center" uk-grid>')
 
         let grid = document.createElement('div');
         grid.classList.add("uk-grid-column-collapse", "uk-child-width-1-5", "uk-text-center");
         grid.setAttribute("uk-grid", "");
 
         for (const resource in resources[section]) {
-            console.log(resource);
             grid.insertAdjacentHTML('beforeend', '<div><div class="card card-resource" title="'+resources[section][resource]["name"]+'"><a target="_blank" href="'+resources[section][resource]["link"]+'"><div class="uk-cover-container"><canvas width="50px" height="50px"></canvas><img class="resource" src="'+resources[section][resource]["img"]+'" alt="" uk-cover></div></a></div></div>');
         }
         

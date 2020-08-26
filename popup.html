@@ -121,62 +121,15 @@
                         <div class="uk-position-relative uk-visible-toggle" tabindex="-1"
                             uk-slideshow="animation: push; autoplay: false; autoplay-interval: 3000; pause-on-hover: true">
 
-                            <ul style="border-radius: 8px; height: 275px" class="uk-slideshow-items">
-
+                            <ul style="border-radius: 8px; height: 325px" class="uk-slideshow-items">
                                 <li>
                                     <div class="house-bg">
-                                        <table class="house-table" style="width:100%; text-align: left; padding: 15px">
-                                            <tr>
-                                                <td style="width: 20%; text-align: center">
-                                                    <img class="crest left" src="res/imgs/house/canterbury.png">
-                                                    <div class="other-bg score-div" style="width: 100%;">
-                                                        <h5 class="house-title small-header white left">Canterbury</h5>
-                                                        <span class="score-span right white">3240</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width: 20%; text-align: center">
-                                                    <img class="crest left" src="res/imgs/house/dublin.png">
-                                                    <div class="other-bg score-div" style="width: 89%;">
-                                                        <h5 class="house-title small-header white left">Dublin</h5>
-                                                        <span class="score-span right white">2875</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width: 20%; text-align: center">
-                                                    <img class="crest left" src="res/imgs/house/limerick.png">
-                                                    <div class="other-bg score-div" style="width: 82%;">
-                                                        <h5 class="house-title small-header white left">Limerick</h5>
-                                                        <span class="score-span right white">2669</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width: 20%; text-align: center">
-                                                    <img class="crest left" src="res/imgs/house/london.png">
-                                                    <div class="other-bg score-div" style="width: 76%;">
-                                                        <h5 class="house-title small-header white left">London</h5>
-                                                        <span class="score-span right white">2441</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width: 20%; text-align: center">
-                                                    <img class="crest left" src="res/imgs/house/waterford.png">
-                                                    <div class="other-bg score-div" style="width: 68%;">
-                                                        <h5 class="house-title small-header white left">Waterford</h5>
-                                                        <span class="score-span right white">2210</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <table id="house-table" style="width:100%; text-align: left; padding: 15px">
                                         </table>
                                     </div>
 
                                 </li>
                             </ul>
-
                             <div class="uk-light">
                                 <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#"
                                     uk-slidenav-previous uk-slideshow-item="previous"></a>
@@ -188,6 +141,10 @@
 
                     </div>
                 </div>
+                <div id="house-tab" class="hidden">
+                    <h3 class="main-header">HouseName</h3>
+                </div>
+
                 <!--Schedule Tab-->
                 <div id="tab-1" class="hidden">
                     <h3 class="main-header">Schedule</h3>
@@ -277,7 +234,6 @@
                                 uk-icon="icon: fa-question-circle"></span></a>
                     </button>
                     <br>
-
                 </div>
                 <div id="tab-5" class="hidden">
                     <h3 class="main-header">More</h3>
