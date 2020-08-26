@@ -1,18 +1,31 @@
 const sidebarButtons = document.getElementsByClassName("sidebar");
+
+// Defines days and months that are used in other scripts.
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+// Defines API urls that are used in this extension.
+const API = {
+    "url": "https://ericzhang.ca/app/api/",
+    "calendarURL": "https://m-gapdev.stthomasmorecollegiate.ca/temp/tv/calendar.php"
+}
 
+// Changes display mode 
 document.getElementById("more-toggle").addEventListener("click", () => {
     toggleDarkMode();
 })
 
+// Allows sidebar buttons to change tabs.
 for (let i = 0; i < sidebarButtons.length; i++) {
-    sidebarButtons[i].addEventListener("click", function () {
+    sidebarButtons[i].addEventListener("click", () => {
         changeTab(i);
     })
 }
 
+/**
+ * Changes currently displayed tab
+ * @param {int} index - index of tab to change to
+ */
 function changeTab(index) {
     for (i = 0; i < sidebarButtons.length; i++) {
         document.getElementById("tab-" + i).classList.add("hidden");
@@ -23,7 +36,11 @@ function changeTab(index) {
     sidebarButtons[index].classList.add("selected");
 }
 
-// Open an XMLXttpRequest to Philip's calendar retriever.
+/**
+ * Sends a "GET" request to an API endpoint and gives callback function the response text.
+ * @param {string} url - URL of resource to get
+ * @callback ondone - callback function relaying response text
+ */
 function getTextFromFile(url, ondone) {
     let request = new XMLHttpRequest();
     request.open('GET', url, true);
@@ -35,6 +52,10 @@ function getTextFromFile(url, ondone) {
     request.send();
 }
 
+/**
+ * Loads a schedule from a JSON object on the schedule tab. Called in popup.js so that loading can complete faster.
+ * @param {object} schedule - the schedule to load, with key being the event, and the value being the time.
+ */
 function loadSchedule(schedule) {
     const table = document.getElementById("schedule-table");
 
@@ -46,6 +67,9 @@ function loadSchedule(schedule) {
 
 }
 
+/**
+ * Changes the display appearance and saves the user's preference.
+ */
 function toggleDarkMode() {
     if (document.documentElement.getAttribute("data-theme") == "light") {
         document.documentElement.setAttribute("data-theme", "dark");
@@ -58,18 +82,24 @@ function toggleDarkMode() {
         chrome.storage.sync.set({"theme": "light"}, ()=>{});
     }
 }
-
+/** 
+ * Initializes the theme from a user preference.
+ */
 function initializeTheme() {
     chrome.storage.sync.get(["theme"], (result) => {
         document.documentElement.setAttribute("data-theme", result.theme);
     });
 }
 
+/** 
+ * Gets the currently signed in user account.
+ */
 function getEmail() {
     chrome.identity.getProfileUserInfo(function(userInfo) {
         console.log(userInfo);
     });
 }
 
+// initialize current theme
 initializeTheme();
 

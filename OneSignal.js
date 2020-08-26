@@ -28,6 +28,14 @@
  
 // Requires Chrome version 35+
 
+/*
+  NOTE:
+  A modification was made on line 505 that allows for the logging of push notifications locally, which is not supported by OneSignal by default.
+  Modification to this library is permitted by the above MIT license.
+  When this library requires an update, the modification should be made to the new version of the library.
+  - Eric Zhang
+*/
+
 // Documenation on Chrome Extension messages
 // https://developer.chrome.com/extensions/messaging
 
@@ -493,10 +501,9 @@ var OneSignalBackground = {
     if (customJSON.u != null)
       GT_notifications_received[customJSON.i].openUrl = customJSON.u;
     
+      // BEGIN MODIFICATION
       onNotificationReceived(chromeNotification, customJSON.u);
-
-      console.log(chromeNotification);
-      console.log(message);
+      // END MODIFICATION
     chrome.notifications.create(customJSON.i, chromeNotification, function(){});
   },
   

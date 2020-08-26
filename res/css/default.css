@@ -1,4 +1,4 @@
-/* Declaration of variables */
+/* Dclaration of variables */
 :root {
     --default: #ffffff;
     --default-light: #909090;
@@ -110,7 +110,9 @@ button.primary {
     border: none;
     border-radius: 20px;
     color: white;
-    padding: 3px;
+   /* padding: 6px;*/
+    width: 30px;
+    height: 30px;
     margin: 4px;
     transition-duration: 0.4s;
 
@@ -175,7 +177,6 @@ td {
 .social-card {
     width: 362px;
     height: 185px;
-    /*background-image: url(https://dpt5udl8tkpo9.cloudfront.net/slimproxy/?src=https%3A%2F%2Fscontent.xx.fbcdn.net%2Fv%2Ft51.2885-15%2F74947253_460190621589980_3451079140841717726_n.jpg%3F_nc_ohc%3D3VYKmeHm7xwAQmyo1Zeqm8y5mrXopZpBM_xGpJ29dQJqKXF78SdKossXQ%26_nc_ht%3Dscontent.xx%26oh%3D670432be11492fafd80663c3badc1799%26oe%3D5EA79F74&w=&h=&q=85&nu=1&salt=&key=cbf14c539a599230a430a6b36d086656);*/
     background-color: black;
     background-size: contain;
     background-position: 50%;

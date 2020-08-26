@@ -1,7 +1,7 @@
 const toggleButton = document.getElementById("expand-schedule")
 const exploreCards = document.getElementsByClassName("explore-card");
 
-
+// Adds event listeners for button clicks, as inline click actions are not allowed in chrome extensions.
 toggleButton.addEventListener("click", function () {
     toggleScheduleCards();
 })
@@ -9,48 +9,22 @@ toggleButton.addEventListener("click", function () {
 for (let i = 0; i < exploreCards.length; i++) {
     exploreCards[i].addEventListener("click", function () {
         showScheduleWindow(i);
-
     })
 }
 
-function toggleScheduleCards() {
-    if (toggleButton.getAttribute("title") == "Expand") {
-        toggleButton.setAttribute("title", "Hide");
-        toggleButton.innerHTML = '<span uk-icon="icon: chevron-up"></span>';
-
-        document.getElementById("expanded-schedule-cards").classList.remove("hidden");
-    }
-    else if (toggleButton.getAttribute("title") == "Hide") {
-        toggleButton.setAttribute("title", "Expand");
-        toggleButton.innerHTML = '<span uk-icon="icon: chevron-down"></span>';
-
-        document.getElementById("expanded-schedule-cards").classList.add("hidden");
-    }
-}
-
-function showScheduleWindow(dateAhead) {
-    document.getElementById("tab-0").classList.add("hidden");
-    document.getElementById("tab-1").classList.remove("hidden");
-
-    sidebarButtons[0].classList.remove("selected");
-    sidebarButtons[1].classList.add("selected");
-
-    clearSchedulePage();
-    advanceSchedule(dateAhead);
-    setScheduleIncrement(dateAhead);
-}
-
-//eventArray, event-date
+/**
+ * Handles loading the schedule data on the explore page.
+ */
 function handleEvents() {
     chrome.storage.local.get(["eventArray", "event-date"], (result) => {
         const eventDate = new Date(result["event-date"]);
         const eventArray = result.eventArray;
         const currentDate = new Date();
 
-        console.log(result);
-
+        // Checks if a cache exists, and if it was made on the current calendar day.
         if (eventDate != undefined && eventDate.toDateString() == currentDate.toDateString() && eventArray != undefined) {
             for (let i = 0; i < 6; i++) {
+                // Populate schedule cards with cached data
                 const cell = document.getElementById("explore-" + i);
                 const date = new Date(eventArray[i].date);
 
@@ -61,21 +35,25 @@ function handleEvents() {
             }
         }
         else {
+            // Fetch a new schedule if the cache is out of date or does not exist.
             newSchedule();
         }
     });
 }
-
+/**
+ * Loads a new schedule from calendar data.
+ */
 function newSchedule() {
-    getTextFromFile("http://m-gapdev.stthomasmorecollegiate.ca/temp/tv/calendar.php", function done(response) {
+    getTextFromFile(API.calendarURL, (response) => {
         const events = JSON.parse(response).items;
         let dayMatrix = structureScheduleData(events);
         const date = new Date().toString();
 
-        chrome.storage.local.set({"eventArray": dayMatrix}, () => { });
-        chrome.storage.local.set({"event-date": date}, () => { });
+        // Cache the structured schedule data, and the date of retrieval.
+        chrome.storage.local.set({"eventArray": dayMatrix}, () => {});
+        chrome.storage.local.set({"event-date": date}, () => {});
 
-
+        // Populates schedule cards
         for (let i = 0; i < 6; i++) {
             const cell = document.getElementById("explore-" + i);
             const date = new Date(dayMatrix[i].date);
@@ -88,21 +66,40 @@ function newSchedule() {
     });
 }
 
-function newBlockScheduleArray() {
-    getTextFromFile("http://m-gapdev.stthomasmorecollegiate.ca/temp/tv/calendar.php", function done(response) {
-        const events = JSON.parse(response).items;
-        let dayMatrix = structureScheduleData(events);
+/**
+ * Shows the schedule tab and displays a particular day's schedule, relative to the current day.
+ * @param {int} dateAhead - number of school days ahead the schedule tab should display. 
+ */
+function showScheduleWindow(dateAhead) {
+    // 
+    document.getElementById("tab-0").classList.add("hidden");
+    document.getElementById("tab-1").classList.remove("hidden");
 
-        for (let i = 0; i < 6; i++) {
-            const cell = document.getElementById("explore-" + i);
-            const date = new Date(dayMatrix[i].date);
+    // Visually changes the current tab on the sidebar
+    sidebarButtons[0].classList.remove("selected");
+    sidebarButtons[1].classList.add("selected");
 
-            cell.getElementsByClassName("left")[0].innerHTML = days[date.getDay()];
-            cell.getElementsByClassName("right")[0].innerHTML = months[date.getMonth()] + ". " + date.getDate();
-            cell.getElementsByClassName("small-header")[0].innerHTML = dayMatrix[i].schedule;
-            cell.getElementsByClassName("footer")[0].innerHTML = dayMatrix[i].label;
-        }
-    });
+    // Functions available in schedule.js
+    clearSchedulePage();
+    advanceSchedule(dateAhead);
+    setScheduleIncrement(dateAhead);
+}
+/**
+ * Toggles the display of an extra 3 schedule cards on the explore page.
+ */
+function toggleScheduleCards() {
+    if (toggleButton.getAttribute("title") == "Expand") {
+        toggleButton.setAttribute("title", "Hide");
+        toggleButton.innerHTML = '<span uk-icon="icon: fa-chevron-up"></span>';
+
+        document.getElementById("expanded-schedule-cards").classList.remove("hidden");
+    }
+    else if (toggleButton.getAttribute("title") == "Hide") {
+        toggleButton.setAttribute("title", "Expand");
+        toggleButton.innerHTML = '<span uk-icon="icon: fa-chevron-down"></span>';
+
+        document.getElementById("expanded-schedule-cards").classList.add("hidden");
+    }
 }
 
 handleEvents();

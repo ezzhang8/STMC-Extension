@@ -1,8 +1,6 @@
 /*
-    Declares all of our schedules.
-    This saves some time
+    Declares all 4 schedule variants.
 */
-
 const regularSchedule = {
     "Morning X Block": "7:00-8:15",
     "1st Block": "8:25-9:40",
@@ -48,7 +46,6 @@ const massSchedule = {
     "Afternoon Y Block": "2:40-4:00"
 };
 
-
 let currentScheduleIncrement = 0;
 
 document.getElementById("schedule-prev").addEventListener("click", function() {
@@ -58,6 +55,10 @@ document.getElementById("schedule-next").addEventListener("click", function() {
     paginator(1);
 })
 
+/**
+ * Structures broad calendar data for schedule data only, including the block rotation and schedule type.
+ * @param {object} events - event JSON
+ */
 function structureScheduleData(events) {
     let dayMatrix = []
     for (let i = 0; i < events.length; i++) {
@@ -71,43 +72,26 @@ function structureScheduleData(events) {
         }
     }
     for (let i=0; i<events.length; i++) {
-         if (events[i].summary.startsWith("Academic Assembly")) {
+         if (events[i].summary.startsWith("Academic Assembly") || events[i].summary.startsWith("Mass Schedule") || events[i].summary.startsWith("Staff/PLC")) {
             let eventDate = new Date(events[i].end.dateTime);
             eventDate.setHours(0);
             eventDate.setMinutes(0);
 
             let object = dayMatrix.find(({ date }) => date == eventDate.toDateString())
 
-            object.label = "Academic Assembly";
-
-        }
-        else if (events[i].summary.startsWith("Mass Schedule")) {
-            let eventDate = new Date(events[i].end.dateTime);
-            eventDate.setHours(0);
-            eventDate.setMinutes(0);
-
-            let object = dayMatrix.find(({ date }) => date == eventDate.toDateString())
-            
-            object.label = "Mass Schedule";
-
-        }
-        else if (events[i].summary.startsWith("Staff/PLC")) {
-            let eventDate = new Date(events[i].start.date);
-            eventDate.setDate(eventDate.getDate() + 1);
-            eventDate.setHours(0);
-            eventDate.setMinutes(0);
-
-
-            let object = dayMatrix.find(({ date }) => date == eventDate.toDateString());
-            object.label = "Late Start";
+            events[i].summary.startsWith("Staff/PLC") ?  object.label = "Late Start" : object.label = events[i].summary;
         }
     }
     return dayMatrix;
 }
 
+/**
+ * Creates an array of events for the given date, then loads it.
+ * @param {Date} date - date of events to look for
+ */
 function requestEvents(date) {
-    let collectedEvents = []
-    getTextFromFile("http://m-gapdev.stthomasmorecollegiate.ca/temp/tv/calendar.php", function done(response) {
+    let collectedEvents = [];
+    getTextFromFile(API.calendarURL, (response) => {
         const events = JSON.parse(response).items;
 
         date.setDate(date.getDate() + 1);
@@ -120,11 +104,11 @@ function requestEvents(date) {
             eventDate.setMinutes(0);
             eventDate.setDate(eventDate.getDate() + 1);
 
-            if (eventDate != null && eventDate.toDateString() == date.toDateString() && !events[i].summary.startsWith("Day ")) {
+            if (eventDate != null && eventDate.toDateString() == date.toDateString() && !events[i].summary.startsWith("Day 1") && !events[i].summary.startsWith("Day 2")) {
                 collectedEvents.push(events[i].summary);
             }
         }
-
+        // If no events for the date were found, push a placeholder.
         if (!collectedEvents[0]) {
             collectedEvents.push("No events");
         }
@@ -132,9 +116,12 @@ function requestEvents(date) {
     });
 }
 
+/**
+ * Loads events into a table on the Schedule Tab
+ * @param {array} events - array of events to be loaded in a table
+ */
 function loadEvents(events) {
     const table = document.getElementById("schedule-events");
-
     document.getElementById("schedule-events").innerHTML = "";
 
     for (let i = 0; i < events.length; i++) {
@@ -143,8 +130,12 @@ function loadEvents(events) {
     enableButtonInput();
 }
 
+/**
+ * Changes the schedule currently displayed on screen.
+ * @param {int} dateForward - number of days ahead of the current day to load a schedule from
+ */
 function advanceSchedule(dateForward) {
-    getTextFromFile("http://m-gapdev.stthomasmorecollegiate.ca/temp/tv/calendar.php", function done(response) {
+    getTextFromFile(API.calendarURL, (response) => {
         const events = JSON.parse(response).items;
         let dayMatrix = structureScheduleData(events);
         const schoolDate = new Date(dayMatrix[dateForward].date);
@@ -152,41 +143,34 @@ function advanceSchedule(dateForward) {
         disableButtonInput();
         requestEvents(schoolDate);
 
-        // Updates dayMatrix with schedule information
-        if (dayMatrix[0].schedule.includes("A")) {
-            document.getElementById("schedule-day").innerHTML = "Day 1"
-        }
-        else {
-            document.getElementById("schedule-day").innerHTML = "Day 2"
-        }
+        dayMatrix[dateForward].schedule.includes("A") ? document.getElementById("schedule-day").innerHTML = "Day 1" : document.getElementById("schedule-day").innerHTML = "Day 2"
 
+        // Populates schedule info in specific elements
         document.getElementById("schedule-rotation").innerHTML = dayMatrix[dateForward].schedule;
         document.getElementById("schedule-label").innerHTML = dayMatrix[dateForward].label;
         document.getElementById("schedule-dotw").innerHTML = days[schoolDate.getDay()]
         document.getElementById("schedule-d").innerHTML = months[schoolDate.getMonth()] + ". " + schoolDate.getDate();
 
-
-        if (dayMatrix[dateForward].label == "Regular Schedule") {
-            loadSchedule(regularSchedule);
-        }
-        else if (dayMatrix[dateForward].label == "Mass Schedule") {
-            loadSchedule(massSchedule);
-        }
-        else if (dayMatrix[dateForward].label == "Academic Assembly") {
-            loadSchedule(academicAssembly);
-        }
-        else if (dayMatrix[dateForward].label == "Late Start") {
-            loadSchedule(lateStart);
+        const scheduleJSON = {
+            "Regular Schedule": regularSchedule,
+            "Mass Schedule": massSchedule,
+            "Academic Assembly Schedule": academicAssembly,
+            "Late Start": lateStart
         }
 
+        loadSchedule(scheduleJSON[dayMatrix[dateForward].label]);
     });
 }
 
+/**
+ * Allows the user to change the schedule page to a date up to 5 school days in the future.
+ * @param {int} increment - whether to go forward or backward in viewing schedules. value of 1 or -1.
+ */
 function paginator(increment) {
     clearSchedulePage();
     disableButtonInput()
 
-    if (currentScheduleIncrement > 0 && currentScheduleIncrement <5) {
+    if (currentScheduleIncrement > 0 && currentScheduleIncrement < 5) {
         currentScheduleIncrement += increment;
         advanceSchedule(currentScheduleIncrement);
     }
@@ -200,15 +184,25 @@ function paginator(increment) {
     }
 }
 
+/**
+ * Sets the current schedule increment -- the schedule currently being viewed relative to the first school day being displayed.
+ * @param {int} value - schedule, should be equivalent to dateForward parameter in advanceSchedule.
+ */
 function setScheduleIncrement(value) {
     currentScheduleIncrement = value;
 }
 
+/**
+ * Disables previous and next buttons so the user cannot spam asynchronous requests.
+ */
 function disableButtonInput() {
     document.getElementById("schedule-prev").setAttribute("disabled", true);
     document.getElementById("schedule-next").setAttribute("disabled", true);
 }
 
+/**
+ * Enables pagination once asynchronous requests have finished loading. Keeps buttons disabled when out of a 5 school day range.
+ */
 function enableButtonInput() {
     if (currentScheduleIncrement == 0) {
         document.getElementById("schedule-prev").setAttribute("disabled", true);
@@ -226,6 +220,9 @@ function enableButtonInput() {
     }
 }
 
+/**
+ * Clears data from the schedule page.
+ */
 function clearSchedulePage() {
     document.getElementById("schedule-table").innerHTML = "";
     document.getElementById("schedule-events").innerHTML = "";
@@ -236,9 +233,5 @@ function clearSchedulePage() {
     document.getElementById("schedule-d").innerHTML = "...";
 }
 
+// Advance the schedule to the current school day.
 advanceSchedule(0);
-
-
-function retrieveEventJSON() {
-
-}
