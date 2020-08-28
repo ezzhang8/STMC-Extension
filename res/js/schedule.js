@@ -1,49 +1,49 @@
 /*
     Declares all 4 schedule variants.
 */
-const regularSchedule = {
+const regularJrSchedule = {
     "Morning X Block": "7:00-8:15",
-    "1st Block": "8:25-9:40",
-    "2nd Block": "9:45-11:00",
-    "Break": "11:00-11:15",
-    "3rd Block": "11:20-12:35",
-    "Lunch": "12:35-1:20",
-    "4th Block": "1:25-2:40",
+    "1st Block": "8:25-9:45",
+    "Jr. School Break": "9:45-9:55",
+    "2nd Block": "10:00-11:15",
+    "Lunch": "11:15-11:50",
+    "3rd Block": "11:55-1:10",
+    "4th Block": "1:15-2:30",
+    "Afternoon Y Block": "2:45-4:00"
+}
+const regularSrSchedule = {
+    "Morning X Block": "7:00-8:15",
+    "1st Block": "8:30-9:50",
+    "2nd Block": "9:55-11:10",
+    "Sr. School Break": "11:10-11:20",
+    "3rd Block": "11:25-12:40",
+    "Lunch": "12:40-1:15",
+    "4th Block": "1:20-2:35",
     "Afternoon Y Block": "2:45-4:00"
 };
 
-const lateStart = {
+const jrCareerEd = {
     "Morning X Block": "7:00-8:10",
-    "Staff Meeting/PLC": "8:15-9:10",
-    "1st Block": "9:20-10:25",
-    "2nd Block": "10:30-11:35",
-    "Lunch": "11:35-12:20",
-    "3rd Block": "12:25-1:30",
-    "4th Block": "1:35-2:40",
-    "Afternoon Y Block": "2:45-4:00"
+    "Staff Meeting/PLC": "8:20-9:05",
+    "1st Block": "9:15-10:00",
+    "2nd Block": "10:05-10:50",
+    "Jr. Break": "10:50-11:05",
+    "3rd Block": "11:10-11:55",
+    "CLE 8/9": "12:00-12:40",
+    "4th Block": "12:40-1:25",
+    "COLLAB/FLEX": "1:35-2:40"
 };
 
-const academicAssembly = {
-    "Morning X Block": "7:00-8:15",
-    "1st Block": "8:25-9:25",
-    "2nd Block": "9:30-10:30",
-    "Break": "10:30-10:45",
-    "3rd Block": "10:50-11:50",
-    "Lunch": "11:50-12:40",
-    "A/A Block": "12:45-1:35",
-    "4th Block": "1:40-2:40",
-    "Afternoon Y Block": "2:45-4:00"
-};
-const massSchedule = {
-    "Morning X Block": "7:00-8:15",
-    "1st Block": "8:25-9:25",
-    "Break": "9:25-9:35",
-    "2nd Block": "9:40-10:40",
-    "Mass": "10:45-11:45",
-    "Lunch": "11:45-12:30",
-    "3rd Block": "12:35-1:35",
-    "4th Block": "1:40-2:40",
-    "Afternoon Y Block": "2:40-4:00"
+const srCareerEd = {
+    "Morning X Block": "7:00-8:10",
+    "Staff Meeting/PLC": "8:20-9:05",
+    "1st Block": "9:20-10:05",
+    "2nd Block": "10:10-10:55",
+    "3rd Block": "11:00-11:45",
+    "Sr. Break": "11:45-12:00",
+    "CLE 10 & CLC 11/12": "12:05-12:45",
+    "4th Block": "12:45-1:30",
+    "COLLAB/FLEX": "1:30-2:40"
 };
 
 let currentScheduleIncrement = 0;
@@ -54,43 +54,6 @@ document.getElementById("schedule-prev").addEventListener("click", function() {
 document.getElementById("schedule-next").addEventListener("click", function() {
     paginator(1);
 })
-
-/**
- * Structures broad calendar data for schedule data only, including the block rotation and schedule type.
- * @param {object} events - event JSON
- */
-function structureScheduleData(events) {
-    let dayMatrix = []
-    for (let i = 0; i < events.length; i++) {
-        if (events[i].summary.startsWith("Day 1") || events[i].summary.startsWith("Day 2")) {
-            let eventDate = new Date(events[i].start.date);
-            eventDate.setDate(eventDate.getDate() + 1);
-            eventDate.setHours(0);
-            eventDate.setMinutes(0);
-
-            dayMatrix.push({ date: eventDate.toDateString(), schedule: events[i].summary.slice(6), label: "Regular Schedule" });
-        }
-    }
-    for (let i=0; i<events.length; i++) {
-         if (events[i].summary.startsWith("Academic Assembly") || events[i].summary.startsWith("Mass Schedule") || events[i].summary.startsWith("Staff/PLC")) {
-            let eventDate = new Date(events[i].end.dateTime);
-            eventDate.setHours(0);
-            eventDate.setMinutes(0);
-
-            let object = dayMatrix.find(({ date }) => date == eventDate.toDateString())
-
-            object.label = events[i].summary
-
-            if (events[i].summary.startsWith("Academic Assembly")) {
-                object.label = "Academic Assembly";
-            }  
-            else if (events[i].summary.startsWith("Staff/PLC")) {
-                object.label = "Late Start"
-            }
-        }
-    }
-    return dayMatrix;
-}
 
 /**
  * Creates an array of events for the given date, then loads it.
@@ -142,30 +105,32 @@ function loadEvents(events) {
  * @param {int} dateForward - number of days ahead of the current day to load a schedule from
  */
 function advanceSchedule(dateForward) {
-    getTextFromFile(API.calendarURL, (response) => {
-        const events = JSON.parse(response).items;
-        let dayMatrix = structureScheduleData(events);
-        const schoolDate = new Date(dayMatrix[dateForward].date);
+    getTextFromFile(API.url+"schedules/", (response) => {
+        const events = JSON.parse(response);
+        const schoolDate = new Date(events[dateForward].date);
+        events[dateForward].blockRotation.includes("A") ? document.getElementById("schedule-day").innerHTML = "Day 1 (" + events[dateForward].houseGroup+")" : document.getElementById("schedule-day").innerHTML = "Day 2 (" + events[dateForward].houseGroup+")"
 
-        disableButtonInput();
-        requestEvents(schoolDate);
-
-        dayMatrix[dateForward].schedule.includes("A") ? document.getElementById("schedule-day").innerHTML = "Day 1" : document.getElementById("schedule-day").innerHTML = "Day 2"
-
-        // Populates schedule info in specific elements
-        document.getElementById("schedule-rotation").innerHTML = dayMatrix[dateForward].schedule;
-        document.getElementById("schedule-label").innerHTML = dayMatrix[dateForward].label;
-        document.getElementById("schedule-dotw").innerHTML = days[schoolDate.getDay()]
-        document.getElementById("schedule-d").innerHTML = months[schoolDate.getMonth()] + ". " + schoolDate.getDate();
-
-        const scheduleJSON = {
-            "Regular Schedule": regularSchedule,
-            "Mass Schedule": massSchedule,
-            "Academic Assembly": academicAssembly,
-            "Late Start": lateStart
+        if (events[dateForward].blockRotation == "Orientation") {
+            document.getElementById("schedule-day").innerHTML = "Orientation";
         }
 
-        loadSchedule(scheduleJSON[dayMatrix[dateForward].label]);
+        // Populates schedule info in specific elements
+        document.getElementById("schedule-rotation").innerHTML = events[dateForward].blockRotation;
+        document.getElementById("schedule-label").innerHTML = events[dateForward].scheduleType;
+        document.getElementById("schedule-dotw").innerHTML = days[schoolDate.getDay()+1];
+        document.getElementById("schedule-d").innerHTML = months[schoolDate.getMonth()] + ". " + (schoolDate.getDate()+1);
+
+        const scheduleJSON = {
+            "Regular Schedule-SR": regularSrSchedule,
+            "Regular Schedule-JR": regularJrSchedule,
+            "CLE/CLC-SR": srCareerEd,
+            "CLE/CLC-JR": jrCareerEd
+        }
+
+        console.log(scheduleMode);
+        loadSchedule(scheduleJSON[events[dateForward].scheduleType+"-"+scheduleMode]);
+        schoolDate.setDate(schoolDate.getDate()+1);
+        requestEvents(schoolDate);
     });
 }
 

@@ -115,6 +115,10 @@
                         <button id="expand-schedule" title="Expand" class="primary"><span
                                 uk-icon="icon: fa-chevron-down"></span></button>
                     </div>
+                    <h4 class="main-header">Bulletin</h4>
+                    <div style="overflow-y: scroll; width: 379px; height: 80px"id="bulletin-container">
+                       
+                    </div>
                     <h4 class="main-header">Houses</h4>
 
                     <div id="social-media-feeds">
@@ -141,8 +145,30 @@
 
                     </div>
                 </div>
-                <div id="house-tab" class="hidden">
-                    <h3 class="main-header">HouseName</h3>
+                <div id="house-tab" class="hidden internal-tab">
+                    <h3 id="house-tab-name" class="main-header"></h3>
+
+                    <div class="uk-text-center">
+                        <img id="house-tab-img"/><br>
+                        <h5 id="house-tab-point-label" class="uk-margin-small-top main-header"></h5>
+                    </div>
+                    <div style="width: calc(100% - 15px); height: 100%; margin-bottom: 15px;" class="card">
+                        <table class="highlighted" style="width: 100%;">
+                            <tbody id="points-table">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="bulletin-tab" class="hidden internal-tab">
+                    <h3 id="bulletin-tab-name" class="main-header"></h3>
+
+                    <div class="uk-text-center">
+                        <img id="bulletin-tab-img"/><br>
+                        <p id="bulletin-tab-text"></p>
+                        
+                    </div>
+                    
                 </div>
 
                 <!--Schedule Tab-->
@@ -201,11 +227,7 @@
                             ...
                         </p>
                     </div>
-                    <button title="View School Calendar" id="calendar-button" class="primary float">
-                        <a style="color:white !important;" target="_blank"
-                            href="https://calendar.google.com/calendar/embed?src=my.stmc.bc.ca_hj6o0nrlt2leful1rbeo3u4dos%40group.calendar.google.com&ctz=America%2FVancouver"><span
-                                uk-icon="icon: fa-calendar-alt"></span></a>
-                    </button>
+                    
 
                     <div style="width: calc(100% - 15px); height: 100%; margin-bottom: 15px;" class="card">
                         <table class="highlighted" style="width: 100%;">

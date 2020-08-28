@@ -1,9 +1,9 @@
 const sidebarButtons = document.getElementsByClassName("sidebar");
-
+let scheduleMode = "";
 // Defines days and months that are used in other scripts.
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
+const houses = ["Canterbury", "Dublin", "Limerick", "London", "Oxford", "Waterford"];
 // Defines API urls that are used in this extension.
 const API = {
     "url": "https://ericzhang.ca/app/api/",
@@ -27,11 +27,18 @@ for (let i = 0; i < sidebarButtons.length; i++) {
  * @param {int} index - index of tab to change to
  */
 function changeTab(index) {
+    let internalTabs = document.getElementsByClassName("internal-tab")
+
+    for (i=0; i<internalTabs.length; i++) {
+        internalTabs[i].classList.add("hidden");
+    }
+
     for (i = 0; i < sidebarButtons.length; i++) {
         document.getElementById("tab-" + i).classList.add("hidden");
         sidebarButtons[i].classList.remove("selected");
     }
 
+    
     document.getElementById("tab-" + index).classList.remove("hidden");
     sidebarButtons[index].classList.add("selected");
 }
@@ -61,10 +68,14 @@ function loadSchedule(schedule) {
 
     table.innerHTML = "";
 
+    if (schedule == undefined) {
+        table.insertAdjacentHTML("beforeend", 'No schedule available.')
+        return;
+    }
+
     for (let i = 0; i < Object.keys(schedule).length; i++) {
         table.insertAdjacentHTML("beforeend", '<tr><td>' + Object.keys(schedule)[i] + '</td><td>' + Object.values(schedule)[i] + '</td></tr>')
     }
-
 }
 
 /**
@@ -96,10 +107,18 @@ function initializeTheme() {
  */
 function getEmail() {
     chrome.identity.getProfileUserInfo(function(userInfo) {
-        console.log(userInfo);
+        if (userInfo.email.includes("2021") || userInfo.email.includes("2022") || userInfo.email.includes("2023")) {
+            scheduleMode = "SR";
+            console.log(scheduleMode)
+        }
+        else {
+            scheduleMode = "JR";
+        }
     });
 }
 
+
+getEmail();
 // initialize current theme
 initializeTheme();
 
