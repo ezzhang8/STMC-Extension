@@ -103,13 +103,12 @@ function initializeTheme() {
 }
 
 /** 
- * Gets the currently signed in user account.
+ * Gets the currently signed in user account in Chrome.
  */
 function getEmail() {
     chrome.identity.getProfileUserInfo(function(userInfo) {
         if (userInfo.email.includes("2021") || userInfo.email.includes("2022") || userInfo.email.includes("2023")) {
             scheduleMode = "SR";
-            console.log(scheduleMode)
         }
         else {
             scheduleMode = "JR";
@@ -117,7 +116,7 @@ function getEmail() {
     });
 }
 
-
+// get user email and s
 getEmail();
 // initialize current theme
 initializeTheme();

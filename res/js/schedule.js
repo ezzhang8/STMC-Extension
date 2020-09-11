@@ -1,50 +1,81 @@
 /*
     Declares all 4 schedule variants.
 */
-const regularJrSchedule = {
-    "Morning X Block": "7:00-8:15",
+const jrRegularSchedule = {
+    "Morning X Blocks": "7:00-8:15",
+    "Warning Bell": "8:20",
     "1st Block": "8:25-9:45",
     "Jr. School Break": "9:45-9:55",
     "2nd Block": "10:00-11:15",
-    "Lunch": "11:15-11:50",
+    "Jr. School Lunch": "11:15-11:50",
     "3rd Block": "11:55-1:10",
     "4th Block": "1:15-2:30",
-    "Afternoon Y Block": "2:45-4:00"
+    "Afternoon Y Blocks": "2:35-3:50"
 }
-const regularSrSchedule = {
-    "Morning X Block": "7:00-8:15",
-    "1st Block": "8:30-9:50",
-    "2nd Block": "9:55-11:10",
-    "Sr. School Break": "11:10-11:20",
-    "3rd Block": "11:25-12:40",
-    "Lunch": "12:40-1:15",
-    "4th Block": "1:20-2:35",
-    "Afternoon Y Block": "2:45-4:00"
+const srRegularSchedule = {
+    "Morning X Blocks": "7:00-8:15",
+    "Warning Bell": "8:20",
+    "1st Block": "8:25-9:45",
+    "2nd Block": "9:50-11:05",
+    "Sr. School Break": "11:05-11:15",
+    "3rd Block": "11:20-12:35",
+    "Sr. School Lunch": "12:35-1:10",
+    "4th Block": "1:15-2:30",
+    "Afternoon Y Blocks": "2:35-3:50"
 };
 
 const jrCareerEd = {
-    "Morning X Block": "7:00-8:10",
-    "Staff Meeting/PLC": "8:20-9:05",
+    "Morning X Blocks": "7:00-8:15",
+    "Staff Meeting/PLC": "8:20-9:00",
+    "Warning Bell": "9:10",
     "1st Block": "9:15-10:00",
     "2nd Block": "10:05-10:50",
-    "Jr. Break": "10:50-11:05",
-    "3rd Block": "11:10-11:55",
-    "CLE 8/9": "12:00-12:40",
-    "4th Block": "12:40-1:25",
-    "COLLAB/FLEX": "1:35-2:40"
+    "Jr. School Lunch": "10:50-11:20",
+    "3rd Block": "11:25-12:10",
+    "CE 8/9": "12:10-12:55",
+    "4th Block": "12:55-1:40",
+    "COMPASS/FLEX Time": "1:45-2:30",
+    "Afternoon Y Blocks": "2:35-3:50"
 };
 
 const srCareerEd = {
-    "Morning X Block": "7:00-8:10",
+    "Morning X Blocks": "7:00-8:15",
     "Staff Meeting/PLC": "8:20-9:05",
-    "1st Block": "9:20-10:05",
-    "2nd Block": "10:10-10:55",
-    "3rd Block": "11:00-11:45",
-    "Sr. Break": "11:45-12:00",
-    "CLE 10 & CLC 11/12": "12:05-12:45",
-    "4th Block": "12:45-1:30",
-    "COLLAB/FLEX": "1:30-2:40"
+    "Warning Bell": "9:10",
+    "1st Block": "9:15-10:00",
+    "2nd Block": "10:05-10:50",
+    "3rd Block": "10:55-11:40",
+    "Sr. School Lunch": "11:40-12:10",
+    "CE 10-12": "12:15-12:55",
+    "4th Block": "12:55-1:40",
+    "COMPASS/FLEX Time": "1:45-2:30",
+    "Afternoon Y Blocks": "2:35-3:50"
 };
+
+const jrMassSchedule = {
+    "Morning X Blocks": "7:00-8:15",
+    "Warning Bell": "8:20",
+    "1st Block": "8:25-9:35",
+    "Jr. School Break": "9:35-9:45",
+    "2nd Block": "9:50-10:55",
+    "Jr. School Lunch": "10:55-11:30",
+    "3rd Block": "11:35-12:40",
+    "4th Block & Mass": "12:45-2:30",
+    "Afternoon Y Blocks": "2:35-3:50"
+}
+
+
+const srMassSchedule = {
+    "Morning X Blocks": "7:00-8:15",
+    "Warning Bell": "8:20",
+    "1st Block": "8:25-9:35",
+    "2nd Block": "9:40-10:45",
+    "Sr. School Break": "10:45-10:55",
+    "3rd Block": "11:00-12:05",
+    "Sr. School Lunch": "12:05-12:40",
+    "4th Block & Mass": "12:45-2:30",
+    "Afternoon Y Blocks": "2:35-3:50"
+}
 
 let currentScheduleIncrement = 0;
 
@@ -54,6 +85,41 @@ document.getElementById("schedule-prev").addEventListener("click", function() {
 document.getElementById("schedule-next").addEventListener("click", function() {
     paginator(1);
 })
+
+
+
+/**
+ * Structures broad calendar data for schedule data only, including the block rotation and schedule type.
+ * @param {object} events - event JSON
+ */
+function structureScheduleData(events) {
+    let dayMatrix = [];
+    for (let i = 0; i < events.length; i++) {
+        if (events[i].summary.startsWith("MORE - ") || events[i].summary.startsWith("RICE - ")) {
+            let eventDate = new Date(events[i].start.date);
+            eventDate.setDate(eventDate.getDate() + 1);
+            eventDate.setHours(0);
+            eventDate.setMinutes(0);
+
+            const scheduleComponents = events[i].summary.split(" - ");
+            let label;
+
+            if (scheduleComponents[2] != undefined) {
+                label = scheduleComponents[2];
+            }
+            else {
+                label = "Regular Schedule";
+            }
+
+            label += " ("+scheduleComponents[0]+")";
+
+
+            dayMatrix.push({ date: eventDate.toDateString(), dateString: events[i].start.date, schedule: scheduleComponents[1], label: label });
+        }
+    }
+    return dayMatrix;
+}
+
 
 /**
  * Creates an array of events for the given date, then loads it.
@@ -105,31 +171,30 @@ function loadEvents(events) {
  * @param {int} dateForward - number of days ahead of the current day to load a schedule from
  */
 function advanceSchedule(dateForward) {
-    getTextFromFile(API.url+"schedules/", (response) => {
-        const events = JSON.parse(response);
-        const schoolDate = new Date(events[dateForward].date);
-        events[dateForward].blockRotation.includes("A") ? document.getElementById("schedule-day").innerHTML = "Day 1 (" + events[dateForward].houseGroup+")" : document.getElementById("schedule-day").innerHTML = "Day 2 (" + events[dateForward].houseGroup+")"
+    getTextFromFile(API.calendarURL, (response) => {
+        const events = JSON.parse(response).items;
+        let dayMatrix = structureScheduleData(events);
+        const schoolDate = new Date(dayMatrix[dateForward].date);
 
-        if (events[dateForward].blockRotation == "Orientation") {
-            document.getElementById("schedule-day").innerHTML = "Orientation";
-        }
+        dayMatrix[dateForward].schedule.includes("A") ? document.getElementById("schedule-day").innerHTML = "Day 1" : document.getElementById("schedule-day").innerHTML = "Day 2"
 
         // Populates schedule info in specific elements
-        document.getElementById("schedule-rotation").innerHTML = events[dateForward].blockRotation;
-        document.getElementById("schedule-label").innerHTML = events[dateForward].scheduleType;
-        document.getElementById("schedule-dotw").innerHTML = days[schoolDate.getDay()+1];
-        document.getElementById("schedule-d").innerHTML = months[schoolDate.getMonth()] + ". " + (schoolDate.getDate()+1);
+        document.getElementById("schedule-rotation").innerHTML = dayMatrix[dateForward].schedule;
+        document.getElementById("schedule-label").innerHTML = dayMatrix[dateForward].label;
+        document.getElementById("schedule-dotw").innerHTML = days[schoolDate.getDay()];
+        document.getElementById("schedule-d").innerHTML = months[schoolDate.getMonth()] + ". " + (schoolDate.getDate());
 
         const scheduleJSON = {
-            "Regular Schedule-SR": regularSrSchedule,
-            "Regular Schedule-JR": regularJrSchedule,
-            "CLE/CLC-SR": srCareerEd,
-            "CLE/CLC-JR": jrCareerEd
+            "Regular Schedule-SR": srRegularSchedule,
+            "Regular Schedule-JR": jrRegularSchedule,
+            "CLE/CLC/Staff Meeting Schedule-SR": srCareerEd,
+            "CLE/CLC/Staff Meeting Schedule-JR": jrCareerEd,
+            "Mass Schedule-SR": srMassSchedule,
+            "Mass Schedule-JR": jrMassSchedule
         }
 
-        console.log(scheduleMode);
-        loadSchedule(scheduleJSON[events[dateForward].scheduleType+"-"+scheduleMode]);
-        schoolDate.setDate(schoolDate.getDate()+1);
+        console.log(dayMatrix);
+        loadSchedule(scheduleJSON[dayMatrix[dateForward].label.split(" (")[0]+"-"+scheduleMode]);
         requestEvents(schoolDate);
     });
 }

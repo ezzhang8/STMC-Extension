@@ -43,7 +43,7 @@
             <button title="Calendar" class="sidebar"><span uk-icon="icon: fa-calendar-alt"></span></button>
             <button title="Notifications" class="sidebar"><span uk-icon="icon: fa-bell"></span></button>
             <button title="Resources" class="sidebar"><span uk-icon="icon: fa-bookmark"></span></button>
-            <button title="More" class="sidebar"><span uk-icon="icon: fa-ellipsis-h"></span></button>
+            <button title="More" class="sidebar"><span uk-icon="icon: fa-cog"></span></button>
         </div>
         <div id="app-content">
             <div id="app-container">
@@ -234,6 +234,11 @@
                             <tbody id="calendar-table">
                             </tbody>
                         </table>
+                        <button title="mySTMC Calendar" class="primary float">
+                            <a style="color:white !important;" target="_blank"
+                                href="https://calendar.google.com/calendar/embed?src=my.stmc.bc.ca_13skf60vphiuf5fnv51njmv8vc%40group.calendar.google.com&ctz=America%2FVancouver"><span
+                                    uk-icon="icon: fa-calendar-alt"></span></a>
+                        </button>
                     </div>
 
                 </div>
@@ -258,8 +263,12 @@
                     <br>
                 </div>
                 <div id="tab-5" class="hidden">
-                    <h3 class="main-header">More</h3>
-                    <button class="default" id="more-toggle">Toggle Dark Mode </button>
+                    <h3 class="main-header">Settings</h3>
+                    <div class="uk-text-center">
+                        <br>
+                        <button class="default" style="padding:5px" id="more-toggle">Change Theme</button>
+                        <!-- <button class="default" style="padding:5px" id="setting-schedule">Change to Jr. Schedule View</button> -->
+                    </div>
                 </div>
             </div>
         </div>

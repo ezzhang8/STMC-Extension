@@ -44,29 +44,28 @@ function handleEvents() {
  * Loads a new schedule from calendar data.
  */
 function newSchedule() {
-    getTextFromFile(API.url+"schedules/", (response) => {
-        const events = JSON.parse(response);
+    getTextFromFile(API.calendarURL, (response) => {
+        const events = JSON.parse(response).items;
+       // const date = new Date().toString();
+
+
+        let dayMatrix = structureScheduleData(events);
         const date = new Date().toString();
+        console.log(events)
 
         // Cache the structured schedule data, and the date of retrieval.
-        chrome.storage.local.set({"eventArray": events}, () => {});
+        chrome.storage.local.set({"eventArray": dayMatrix}, () => {});
         chrome.storage.local.set({"event-date": date}, () => {});
 
         // Populates schedule cards
         for (let i = 0; i < 6; i++) {
             const cell = document.getElementById("explore-" + i);
-            const date = new Date(events[i].date);
+            const date = new Date(dayMatrix[i].date);
 
-            cell.getElementsByClassName("left")[0].innerHTML = days[date.getDay()+1];
-            cell.getElementsByClassName("right")[0].innerHTML = months[date.getMonth()] + ". " + (date.getDate()+1);
-            cell.getElementsByClassName("small-header")[0].innerHTML = events[i].blockRotation;
-
-            if (events[i].scheduleType != null) {
-                cell.getElementsByClassName("footer")[0].innerHTML = events[i].scheduleType + " " + "("+events[i].houseGroup+")";
-            }
-            else {
-                cell.getElementsByClassName("footer")[0].innerHTML = "";
-            }
+            cell.getElementsByClassName("left")[0].innerHTML = days[date.getDay()];
+            cell.getElementsByClassName("right")[0].innerHTML = months[date.getMonth()] + ". " + date.getDate();
+            cell.getElementsByClassName("small-header")[0].innerHTML = dayMatrix[i].schedule;
+            cell.getElementsByClassName("footer")[0].innerHTML = dayMatrix[i].label;
         }
     });
 }
