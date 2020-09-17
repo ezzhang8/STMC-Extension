@@ -69,16 +69,19 @@ function populateCalendar(events, dateString) {
     for (let i = 0; i < events.length; i++) {
         let date = events[i].start.date;
 
-        // Events that are not all-day events do not have start.date defined, but start.dateTime instead. 
-        // If such an event is found, get the first ten characters of start.dateTime to make a YYYY-MM-DD date string.
-        if (events[i].start.dateTime != undefined) {
-            date = events[i].start.dateTime.substring(0, 10);
+        if (!events[i].summary.startsWith("MORE - ") || !events[i].summary.startsWith("RICE - ")) {
+            // Events that are not all-day events do not have start.date defined, but start.dateTime instead. 
+            // If such an event is found, get the first ten characters of start.dateTime to make a YYYY-MM-DD date string.
+            if (events[i].start.dateTime != undefined) {
+                date = events[i].start.dateTime.substring(0, 10);
+            }
+        
+            // Adds each event row
+            document.getElementById("calendar-table").insertAdjacentHTML("beforeend", '<tr><td style="width: 20%; text-align: center; padding: 5px;">'+parseDate(date)+'</td><td>'+events[i].summary+'</td></tr>');
+            // Provides the date the calendar was last updated
+            document.getElementById("calendar-upd").innerHTML = "Last updated: "+dateString.toString().split(" GMT")[0];    
         }
-    
-        // Adds each event row
-        document.getElementById("calendar-table").insertAdjacentHTML("beforeend", '<tr><td style="width: 20%; text-align: center; padding: 5px;">'+parseDate(date)+'</td><td>'+events[i].summary+'</td></tr>');
-        // Provides the date the calendar was last updated
-        document.getElementById("calendar-upd").innerHTML = "Last updated: "+dateString.toString().split(" GMT")[0];
+        
     }
     
 }
