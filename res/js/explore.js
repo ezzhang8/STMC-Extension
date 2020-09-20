@@ -141,8 +141,8 @@ function showHouseTab(houseId) {
     houseTab.classList.remove("hidden");
 
     document.getElementById("house-tab-name").innerHTML = houses[houseId-1];
-    document.getElementById("house-tab-img").src = "res/imgs/house/"+houses[houseId-1].toLowerCase()+".png";
-
+    document.getElementById("house-tab-img").src = "res/imgs/house/large/"+houses[houseId-1].toLowerCase()+".png";
+    document.getElementById("house-tab-img").classList.add("crest-large");
     getTextFromFile(API.url+"houses/"+houseId, (response)=> {
         let json = JSON.parse(response)[0];
         document.getElementById("house-tab-point-label").innerHTML = json.points + " pts.";

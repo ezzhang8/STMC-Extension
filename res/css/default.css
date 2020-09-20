@@ -306,25 +306,27 @@ input[type="date"] {
     border-radius: 20px; 
     padding: 5px 0px 5px 15px; 
     margin-right: 20px; 
-    height: 20px;
+    height: 30px;
 }
 
 .crest {
     position: relative; 
     image-rendering: pixelated; 
-    left: -3px;  
-    top: -3px;
-    width: 32px;
+    left: -15px;  
+    top: -13px;
+    width: 64px;
 }
 
 span.score-span {
-    padding-top: 2px; 
+    padding-top: 6px; 
     padding-right: 10px;
 }
 
 h5.house-title {
     text-align: left; 
-    padding-left: 10px;
+    padding-top: 5px;
+    left: -5px;
+    /* padding-left: 10px; */
 }
 
 img.resource {
@@ -334,4 +336,8 @@ img.resource {
 
 .vert-center {
     align-items: center; 
+}
+
+img.crest-large {
+    height: 200px;
 }
