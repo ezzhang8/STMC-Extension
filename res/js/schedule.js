@@ -86,7 +86,9 @@ document.getElementById("schedule-next").addEventListener("click", function() {
     paginator(1);
 })
 
-
+document.getElementById("setting-schedule").addEventListener("click", function() {
+    changeScheduleMode();
+})
 
 /**
  * Structures broad calendar data for schedule data only, including the block rotation and schedule type.
@@ -193,9 +195,10 @@ function advanceSchedule(dateForward) {
             "Mass Schedule-JR": jrMassSchedule
         }
 
-        console.log(dayMatrix);
         loadSchedule(scheduleJSON[dayMatrix[dateForward].label.split(" (")[0]+"-"+scheduleMode]);
         requestEvents(schoolDate);
+
+        initScheduleButton();
     });
 }
 
@@ -268,6 +271,29 @@ function clearSchedulePage() {
     document.getElementById("schedule-label").innerHTML = "";
     document.getElementById("schedule-dotw").innerHTML = "Loading...";
     document.getElementById("schedule-d").innerHTML = "...";
+}
+
+
+function changeScheduleMode() {
+    if (scheduleMode == "JR") {
+        document.getElementById("setting-schedule").innerHTML = "View Jr. Schedules";
+        scheduleMode = "SR"
+        advanceSchedule(currentScheduleIncrement)
+    }
+    else if(scheduleMode == "SR") {
+        document.getElementById("setting-schedule").innerHTML = "View Sr. Schedules";
+        scheduleMode = "JR"
+        advanceSchedule(currentScheduleIncrement)
+    }
+}
+
+function initScheduleButton() {
+    if (scheduleMode == "SR") {
+        document.getElementById("setting-schedule").innerHTML = "View Jr. Schedules";
+    }
+    else if(scheduleMode == "JR") {
+        document.getElementById("setting-schedule").innerHTML = "View Sr. Schedules";
+    }
 }
 
 // Advance the schedule to the current school day.

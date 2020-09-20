@@ -51,7 +51,6 @@ function newSchedule() {
 
         let dayMatrix = structureScheduleData(events);
         const date = new Date().toString();
-        console.log(events)
 
         // Cache the structured schedule data, and the date of retrieval.
         chrome.storage.local.set({"eventArray": dayMatrix}, () => {});
@@ -200,10 +199,14 @@ function loadBulletin() {
                 showBulletin(parseInt(event.path[1].id.substr(-1)));
             });
         }
+
+        if (json.length == 0) {
+            document.getElementById("bulletin-container").insertAdjacentHTML('beforeend', '<h6>No bulletins to display</h6>')
+        }
     });
 }
 
 
 loadHouses();
 loadBulletin();
-newSchedule();
+handleEvents();
