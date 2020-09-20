@@ -180,7 +180,7 @@ function showBulletin(bulletinId) {
                 document.getElementById("bulletin-tab-text").innerHTML = bulletin[i].description;
 
                 if (bulletin[i].webLink != null) {
-                    bulletinTab.insertAdjacentHTML('beforeend', '<button title="View School Calendar" id="calendar-button" class="primary float"><a style="color:white !important;" target="_blank" href="'+bulletin[i].webLink+'"><span uk-icon="icon: fa-paper-plane"></span></a></button>')
+                    bulletinTab.insertAdjacentHTML('beforeend', '<button title="Visit Link" id="calendar-button" class="primary float"><a style="color:white !important;" target="_blank" href="'+bulletin[i].webLink+'"><span uk-icon="icon: fa-paper-plane"></span></a></button>')
                 } 
             }
         }
