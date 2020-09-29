@@ -44,7 +44,7 @@ function handleEvents() {
  * Loads a new schedule from calendar data.
  */
 function newSchedule() {
-    getTextFromFile(API.calendarURL, (response) => {
+    getTextFromFile(API.url+"calendar/", (response) => {
         const events = JSON.parse(response).items;
        // const date = new Date().toString();
 

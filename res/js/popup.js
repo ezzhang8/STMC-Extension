@@ -6,8 +6,7 @@ const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 const houses = ["Canterbury", "Dublin", "Limerick", "London", "Oxford", "Waterford"];
 // Defines API urls that are used in this extension.
 const API = {
-    "url": "https://ericzhang.ca/app/api/",
-    "calendarURL": "https://m-gapdev.stthomasmorecollegiate.ca/temp/tv/calendar.php"
+    "url": "https://app.stmc.bc.ca/api/"
 }
 
 // Changes display mode 

@@ -129,7 +129,7 @@ function structureScheduleData(events) {
  */
 function requestEvents(date) {
     let collectedEvents = [];
-    getTextFromFile(API.calendarURL, (response) => {
+    getTextFromFile(API.url+"calendar/", (response) => {
         const events = JSON.parse(response).items;
 
         for (i = 0; i < events.length; i++) {
@@ -173,7 +173,7 @@ function loadEvents(events) {
  * @param {int} dateForward - number of days ahead of the current day to load a schedule from
  */
 function advanceSchedule(dateForward) {
-    getTextFromFile(API.calendarURL, (response) => {
+    getTextFromFile(API.url+"calendar/", (response) => {
         const events = JSON.parse(response).items;
         let dayMatrix = structureScheduleData(events);
         const schoolDate = new Date(dayMatrix[dateForward].date);
