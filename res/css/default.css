@@ -317,6 +317,10 @@ input[type="date"] {
     width: 64px;
 }
 
+a, a:hover{
+    color: var(--default-inv);
+}
+
 span.score-span {
     padding-top: 6px; 
     padding-right: 10px;

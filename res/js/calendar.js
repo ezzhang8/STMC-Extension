@@ -77,7 +77,7 @@ function populateCalendar(events, dateString) {
             }
         
             // Adds each event row
-            document.getElementById("calendar-table").insertAdjacentHTML("beforeend", '<tr><td style="width: 20%; text-align: center; padding: 5px;">'+parseDate(date)+'</td><td>'+events[i].summary+'</td></tr>');
+            document.getElementById("calendar-table").insertAdjacentHTML("beforeend", '<tr><td style="width: 20%; text-align: center; padding: 5px;">'+parseDate(date)+'</td><td><a target="_blank" href="'+events[i].htmlLink+'">'+events[i].summary+'</a></td></tr>');
             // Provides the date the calendar was last updated
             document.getElementById("calendar-upd").innerHTML = "Last updated: "+dateString.toString().split(" GMT")[0];    
         }

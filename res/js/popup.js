@@ -68,7 +68,7 @@ function loadSchedule(schedule) {
     table.innerHTML = "";
 
     if (schedule == undefined) {
-        table.insertAdjacentHTML("beforeend", 'No schedule available.')
+        table.insertAdjacentHTML("beforeend", 'No schedule available, see details.')
         return;
     }
 

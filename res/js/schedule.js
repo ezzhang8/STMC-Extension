@@ -143,12 +143,12 @@ function requestEvents(date) {
             eventDate.setMinutes(0);
 
             if (eventDate != null && eventDate.toDateString() == date.toDateString() && !events[i].summary.startsWith("Day 1") && !events[i].summary.startsWith("Day 2")) {
-                collectedEvents.push(events[i].summary);
+                collectedEvents.push(events[i]);
             }
         }
         // If no events for the date were found, push a placeholder.
         if (!collectedEvents[0]) {
-            collectedEvents.push("No events");
+            collectedEvents.push({"summary": "No events", "htmlLink": ""});
         }
         loadEvents(collectedEvents);
     });
@@ -163,7 +163,7 @@ function loadEvents(events) {
     document.getElementById("schedule-events").innerHTML = "";
 
     for (let i = 0; i < events.length; i++) {
-        table.insertAdjacentHTML("beforeend", '<tr><td>' + events[i] + '</td>')
+        table.insertAdjacentHTML("beforeend", '<tr style="width:100%"><td style="width:120px"><a target="_blank" href="'+events[i].htmlLink+'">' + events[i].summary + '</a></td>')
     }
     enableButtonInput();
 }
