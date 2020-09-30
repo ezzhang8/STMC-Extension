@@ -68,7 +68,7 @@ function loadSchedule(schedule) {
     table.innerHTML = "";
 
     if (schedule == undefined) {
-        table.insertAdjacentHTML("beforeend", 'No schedule available, see details.')
+        table.insertAdjacentHTML("beforeend", "There doesn't seem to be a schedule for this day. Click the Google Calendar link for today's schedule.")
         return;
     }
 

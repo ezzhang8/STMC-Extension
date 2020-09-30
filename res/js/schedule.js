@@ -26,29 +26,27 @@ const srRegularSchedule = {
 
 const jrCareerEd = {
     "Morning X Blocks": "7:00-8:15",
-    "Staff Meeting/PLC": "8:20-9:00",
-    "Warning Bell": "9:10",
-    "1st Block": "9:15-10:00",
-    "2nd Block": "10:05-10:50",
-    "Jr. School Lunch": "10:50-11:20",
-    "3rd Block": "11:25-12:10",
-    "CE 8/9": "12:10-12:55",
-    "4th Block": "12:55-1:40",
-    "COMPASS/FLEX Time": "1:45-2:30",
+    "Warning Bell": "8:20",
+    "1st Block": "8:25-9:30",
+    "Jr. School Break": "9:30-9:35",
+    "2nd Block": "9:40-10:45",
+    "Jr. School Lunch": "10:45-11:20",
+    "3rd Block": "11:25-12:30",
+    "CE 8/9": "12:35-1:25",
+    "4th Block": "1:25-2:30",
     "Afternoon Y Blocks": "2:35-3:50"
 };
 
 const srCareerEd = {
     "Morning X Blocks": "7:00-8:15",
-    "Staff Meeting/PLC": "8:20-9:05",
-    "Warning Bell": "9:10",
-    "1st Block": "9:15-10:00",
-    "2nd Block": "10:05-10:50",
-    "3rd Block": "10:55-11:40",
-    "Sr. School Lunch": "11:40-12:10",
-    "CE 10-12": "12:15-12:55",
-    "4th Block": "12:55-1:40",
-    "COMPASS/FLEX Time": "1:45-2:30",
+    "Warning Bell": "8:20",
+    "1st Block": "8:25-9:30",
+    "2nd Block": "9:35-10:40",
+    "Sr. School Break": "10:40-10:45",
+    "3rd Block": "10:50-11:55",
+    "Sr. School Lunch": "11:55-12:30",
+    "CE 8/9": "12:35-1:25",
+    "4th Block": "1:25-2:30",
     "Afternoon Y Blocks": "2:35-3:50"
 };
 
@@ -74,6 +72,32 @@ const srMassSchedule = {
     "3rd Block": "11:00-12:05",
     "Sr. School Lunch": "12:05-12:40",
     "4th Block & Mass": "12:45-2:30",
+    "Afternoon Y Blocks": "2:35-3:50"
+}
+
+const jrCompassSchedule = {
+    "Morning X Blocks": "7:00-8:15",
+    "PLC/Staff Meetings": "8:20-9:05",
+    "Warning Bell": "9:10",
+    "1st Block": "9:15-10:10",
+    "2nd Block": "10:15-11:10",
+    "Jr. School Lunch": "11:10-11:45",
+    "3rd Block": "11:50-12:45",
+    "4th Block": "12:50-1:45",
+    "Compass Time": "1:50-2:30",
+    "Afternoon Y Blocks": "2:35-3:50"
+}
+
+const srCompassSchedule = {
+    "Morning X Blocks": "7:00-8:15",
+    "PLC/Staff Meetings": "8:20-9:05",
+    "Warning Bell": "9:10",
+    "1st Block": "9:15-10:10",
+    "2nd Block": "10:15-11:10",
+    "3rd Block": "11:15-12:10",
+    "Sr. School Lunch": "12:10-12:45",
+    "4th Block": "12:50-1:45",
+    "Compass Time": "1:50-2:30",
     "Afternoon Y Blocks": "2:35-3:50"
 }
 
@@ -189,10 +213,12 @@ function advanceSchedule(dateForward) {
         const scheduleJSON = {
             "Regular Schedule-SR": srRegularSchedule,
             "Regular Schedule-JR": jrRegularSchedule,
-            "CLE/CLC/Staff Meeting Schedule-SR": srCareerEd,
-            "CLE/CLC/Staff Meeting Schedule-JR": jrCareerEd,
+            "Career Education Schedule-SR": srCareerEd,
+            "Career Education Schedule-JR": jrCareerEd,
             "Mass Schedule-SR": srMassSchedule,
-            "Mass Schedule-JR": jrMassSchedule
+            "Mass Schedule-JR": jrMassSchedule,
+            "PLC/ Staff Meetings/ Compass Schedule-SR": srCompassSchedule,
+            "PLC/ Staff Meetings/ Compass Schedule-JR": jrCompassSchedule
         }
 
         loadSchedule(scheduleJSON[dayMatrix[dateForward].label.split(" (")[0]+"-"+scheduleMode]);
