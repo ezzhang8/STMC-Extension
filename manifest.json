@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "STMC Chrome Extension",
     "description": "Live block rotation checker, calendar, quick resource links, and notifications.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "icons": {"128":"res/imgs/icons/icon_128.png"},
     "browser_action": {
         "default_icon": "res/imgs/icons/icon.png",
