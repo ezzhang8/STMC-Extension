@@ -45,7 +45,7 @@ const srCareerEd = {
     "Sr. School Break": "10:40-10:45",
     "3rd Block": "10:50-11:55",
     "Sr. School Lunch": "11:55-12:30",
-    "CE 8/9": "12:35-1:25",
+    "CE 10-12": "12:35-1:25",
     "4th Block": "1:25-2:30",
     "Afternoon Y Blocks": "2:35-3:50"
 };

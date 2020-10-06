@@ -193,7 +193,7 @@ function loadBulletin() {
         let json = JSON.parse(response);
 
         for (i=0; i<json.length; i++) {
-            document.getElementById("bulletin-container").insertAdjacentHTML('beforeend', ' <div style="width: 170px; text-align:center" class="card left vert-center"><a id="bulletin-'+json[i].bulletinId+'"><h5 class="small-header" style="padding-top:8px; text-align:center">'+json[i].name+'</h5><h6 class="small-text footer" style="text-align:center; font-size: 12px;">'+json[i].dateAdded+'</h6></a></div>')
+            document.getElementById("bulletin-container").insertAdjacentHTML('beforeend', ' <div style="width: 170px; text-align:center" class="card left vert-center"><a id="bulletin-'+json[i].bulletinId+'"><h5 class="small-header uk-text-truncate" style="padding-top:8px; text-align:center">'+json[i].name+'</h5><h6 class="small-text footer" style="text-align:center; font-size: 12px;">'+json[i].dateAdded+'</h6></a></div>')
 
             document.getElementById("bulletin-"+json[i].bulletinId).addEventListener('click', (event)=> {
                 showBulletin(parseInt(event.path[1].id.substr(-1)));
