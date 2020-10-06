@@ -12,5 +12,6 @@
     "background": { 
         "persistent": false,
         "scripts": ["OneSignal.js", "background.js"] },
-    "web_accessible_resources": ["/res/imgs/", "*.png"]
+    "web_accessible_resources": ["/res/imgs/", "*.png"],
+    "update_url": "https://app.stmc.bc.ca/chrome/update.xml"
 }
