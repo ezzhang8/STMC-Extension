@@ -50,7 +50,9 @@ function parseDate(dateString) {
         are stripped before using this function, and JavaScript Date objects automatically handles months.
     
     */
-    date.setDate(date.getDate() + 1);
+   // date.setDate(date.getDate() + 1);
+
+    date.setUTCHours(16);
 
     if (dateString != null) {
         // constant months is inherited from popup.js
@@ -73,7 +75,8 @@ function populateCalendar(events, dateString) {
             // Events that are not all-day events do not have start.date defined, but start.dateTime instead. 
             // If such an event is found, get the first ten characters of start.dateTime to make a YYYY-MM-DD date string.
             if (events[i].start.dateTime != undefined) {
-                date = events[i].start.dateTime.substring(0, 10);
+                
+                date = parseDate(events[i].start.dateTime.substring(0, 10));
             }
         
             // Adds each event row

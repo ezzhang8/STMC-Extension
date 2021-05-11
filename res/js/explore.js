@@ -43,31 +43,45 @@ function handleEvents() {
 /**
  * Loads a new schedule from calendar data.
  */
-function newSchedule() {
-    getTextFromFile(API.url+"calendar/", (response) => {
-        const events = JSON.parse(response).items;
-       // const date = new Date().toString();
+async function newSchedule() {
+    const response = await request("GET", API.url+"calendar/");
+    const override = await request("GET", API.url+"overrides/");
 
+    const events = JSON.parse(response).items;
+    const overrides = JSON.parse(override);
 
-        let dayMatrix = structureScheduleData(events);
-        const date = new Date().toString();
+    let dayMatrix = structureScheduleData(events);
 
-        // Cache the structured schedule data, and the date of retrieval.
-        chrome.storage.local.set({"eventArray": dayMatrix}, () => {});
-        chrome.storage.local.set({"event-date": date}, () => {});
+    for (schedule of overrides) {
+        const found = dayMatrix.filter((item) => {
+            return item.dateString == schedule.date;
+        })
 
-        // Populates schedule cards
-        for (let i = 0; i < 6; i++) {
-            const cell = document.getElementById("explore-" + i);
-            const date = new Date(dayMatrix[i].date);
-
-            cell.getElementsByClassName("left")[0].innerHTML = days[date.getDay()];
-            cell.getElementsByClassName("right")[0].innerHTML = months[date.getMonth()] + ". " + date.getDate();
-            cell.getElementsByClassName("small-header")[0].innerHTML = dayMatrix[i].schedule;
-            cell.getElementsByClassName("footer")[0].innerHTML = dayMatrix[i].label;
+        if (found.length > 0) {
+            found[0].dateString = schedule.date;
+            found[0].schedule = schedule.blockRotation;
+            found[0].label = `${schedule.scheduleType} (${schedule.scheduleFamily})`
         }
-    });
+    }
+
+    const date = new Date().toString();
+    // Cache the structured schedule data, and the date of retrieval.
+    chrome.storage.local.set({"eventArray": dayMatrix}, () => {});
+    chrome.storage.local.set({"event-date": date}, () => {});
+
+    // Populates schedule cards
+    for (let i = 0; i < 6; i++) {
+        const cell = document.getElementById("explore-" + i);
+        const date = new Date(dayMatrix[i].date);
+
+        cell.getElementsByClassName("left")[0].innerHTML = days[date.getDay()];
+        cell.getElementsByClassName("right")[0].innerHTML = months[date.getMonth()] + ". " + date.getDate();
+        cell.getElementsByClassName("small-header")[0].innerHTML = dayMatrix[i].schedule;
+        cell.getElementsByClassName("footer")[0].innerHTML = dayMatrix[i].label;
+    }
 }
+
+
 
 /**
  * Shows the schedule tab and displays a particular day's schedule, relative to the current day.
@@ -121,12 +135,14 @@ function loadHouses() {
         let housePoints = JSON.parse(response);
         housePoints.sort(sortHousesByPoints);
 
+        document.getElementById("house-lead").innerHTML = `${housePoints[0].houseName} +${housePoints[0].points-housePoints[1].points} pts.`;
+
         const houseTable = document.getElementById("house-table")
         for (i=0; i<housePoints.length; i++) {  
-            houseTable.insertAdjacentHTML('beforeend', '<tr><td style="width: 20%; text-align: center"><img class="crest left" src="res/imgs/house/'+housePoints[i].houseName.toLowerCase()+'.png"><div class="other-bg score-div" style="width: 100%;"><h5 class="house-title small-header white left"><a class="white" id="house-'+housePoints[i].houseId+'">'+housePoints[i].houseName+'</a></h5><span class="score-span right white">'+housePoints[i].points+' pts.</span></div></td></tr>')
+            houseTable.insertAdjacentHTML('beforeend', '<tr><td style="width: 20%; text-align: center"><img class="crest left" src="res/imgs/house/'+housePoints[i].houseName.toLowerCase()+`.png"><div class="other-bg score-div" style="width: ${(housePoints[i].points/housePoints[0].points)*98}%;"><h5 class="house-title small-header white left"><a class="white" id="house-`+housePoints[i].houseId+'">'+housePoints[i].houseName+'</a></h5><span class="score-span right white">'+housePoints[i].points+' pts.</span></div></td></tr>')
            
             document.getElementById("house-"+housePoints[i].houseId).addEventListener('click', (event)=> {
-                showHouseTab(parseInt(event.srcElement.id.substr(-1)));
+                showHouseTab(parseInt(event.target.id.substr(-1)));
             });
         }
     })
@@ -148,7 +164,7 @@ function showHouseTab(houseId) {
     })
 
     getTextFromFile(API.url+"points/"+houseId, (response)=> {
-        let json = JSON.parse(response);
+        let json = JSON.parse(response).reverse();
         document.getElementById("points-table").innerHTML = "";
 
         if (json.length == 0) {
@@ -190,7 +206,7 @@ function showBulletin(bulletinId) {
 
 function loadBulletin() {
     getTextFromFile(API.url+"bulletin/", (response)=> {
-        let json = JSON.parse(response);
+        let json = JSON.parse(response).reverse();
 
         for (i=0; i<json.length; i++) {
             document.getElementById("bulletin-container").insertAdjacentHTML('beforeend', ' <div style="width: 170px; text-align:center" class="card left vert-center"><a id="bulletin-'+json[i].bulletinId+'"><h5 class="small-header uk-text-truncate" style="padding-top:8px; text-align:center">'+json[i].name+'</h5><h6 class="small-text footer" style="text-align:center; font-size: 12px;">'+json[i].dateAdded+'</h6></a></div>')
@@ -209,4 +225,4 @@ function loadBulletin() {
 
 loadHouses();
 loadBulletin();
-handleEvents();
+newSchedule();

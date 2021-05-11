@@ -196,36 +196,63 @@ function loadEvents(events) {
  * Changes the schedule currently displayed on screen.
  * @param {int} dateForward - number of days ahead of the current day to load a schedule from
  */
-function advanceSchedule(dateForward) {
-    getTextFromFile(API.url+"calendar/", (response) => {
-        const events = JSON.parse(response).items;
-        let dayMatrix = structureScheduleData(events);
-        const schoolDate = new Date(dayMatrix[dateForward].date);
+async function advanceSchedule(dateForward) {
+    const response = await request("GET", API.url+"calendar/");
+    const override = await request("GET", API.url+"overrides/");
+    const overrides = JSON.parse(override);
 
-        dayMatrix[dateForward].schedule.includes("A") ? document.getElementById("schedule-day").innerHTML = "Day 1" : document.getElementById("schedule-day").innerHTML = "Day 2"
+    const events = JSON.parse(response).items;
+    let dayMatrix = structureScheduleData(events);
+    const schoolDate = new Date(dayMatrix[dateForward].date);
 
-        // Populates schedule info in specific elements
-        document.getElementById("schedule-rotation").innerHTML = dayMatrix[dateForward].schedule;
-        document.getElementById("schedule-label").innerHTML = dayMatrix[dateForward].label;
-        document.getElementById("schedule-dotw").innerHTML = days[schoolDate.getDay()];
-        document.getElementById("schedule-d").innerHTML = months[schoolDate.getMonth()] + ". " + (schoolDate.getDate());
+    for (schedule of overrides) {
+        const found = dayMatrix.filter((item) => {
+            return item.dateString == schedule.date;
+        })
 
-        const scheduleJSON = {
-            "Regular Schedule-SR": srRegularSchedule,
-            "Regular Schedule-JR": jrRegularSchedule,
-            "Career Education Schedule-SR": srCareerEd,
-            "Career Education Schedule-JR": jrCareerEd,
-            "Mass Schedule-SR": srMassSchedule,
-            "Mass Schedule-JR": jrMassSchedule,
-            "PLC/ Staff Meetings/ Compass Schedule-SR": srCompassSchedule,
-            "PLC/ Staff Meetings/ Compass Schedule-JR": jrCompassSchedule
+        if (found.length > 0) {
+            found[0].dateString = schedule.date;
+            found[0].schedule = schedule.blockRotation;
+            found[0].label = `${schedule.scheduleType} (${schedule.scheduleFamily})`
+            found[0].scheduleJR = schedule.scheduleJr;
+            found[0].scheduleSR = schedule.scheduleSr;
         }
+    }
 
+    dayMatrix[dateForward].schedule.includes("A") ? document.getElementById("schedule-day").innerHTML = "Day 1" : document.getElementById("schedule-day").innerHTML = "Day 2"
+
+    // Populates schedule info in specific elements
+    document.getElementById("schedule-rotation").innerHTML = dayMatrix[dateForward].schedule;
+    document.getElementById("schedule-label").innerHTML = dayMatrix[dateForward].label;
+    document.getElementById("schedule-dotw").innerHTML = days[schoolDate.getDay()];
+    document.getElementById("schedule-d").innerHTML = months[schoolDate.getMonth()] + ". " + (schoolDate.getDate());
+
+    const scheduleJSON = {
+        "Regular Schedule-SR": srRegularSchedule,
+        "Regular Schedule-JR": jrRegularSchedule,
+        "Career Education Schedule-SR": srCareerEd,
+        "Career Education Schedule-JR": jrCareerEd,
+        "Mass Schedule-SR": srMassSchedule,
+        "Mass Schedule-JR": jrMassSchedule,
+        "PLC/ Staff Meetings/ Compass Schedule-SR": srCompassSchedule,
+        "PLC/ Staff Meetings/ Compass Schedule-JR": jrCompassSchedule
+    }
+
+    if (dayMatrix[dateForward].scheduleJR == undefined) {
         loadSchedule(scheduleJSON[dayMatrix[dateForward].label.split(" (")[0]+"-"+scheduleMode]);
-        requestEvents(schoolDate);
+    }
+    else {
+        const table = document.getElementById("schedule-table");
+        table.innerHTML = "";
+        for (row of dayMatrix[dateForward]["schedule"+scheduleMode]) {
+            table.insertAdjacentHTML("beforeend", '<tr><td>' + row.name + '</td><td>' + row.timeSlot + '</td></tr>')
 
-        initScheduleButton();
-    });
+        }
+    }
+    requestEvents(schoolDate);
+
+    initScheduleButton();
+
 }
 
 /**

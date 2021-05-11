@@ -58,6 +58,30 @@ function getTextFromFile(url, ondone) {
     request.send();
 }
 
+function request(method, url) {
+    return new Promise(function (resolve, reject) {
+        let xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.onload = function () {
+            if (this.status >= 200 && this.status < 300) {
+                resolve(xhr.response);
+            } else {
+                reject({
+                    status: this.status,
+                    statusText: xhr.statusText
+                });
+            }
+        };
+        xhr.onerror = function () {
+            reject({
+                status: this.status,
+                statusText: xhr.statusText
+            });
+        };
+        xhr.send();
+    });
+}
+
 /**
  * Loads a schedule from a JSON object on the schedule tab. Called in popup.js so that loading can complete faster.
  * @param {object} schedule - the schedule to load, with key being the event, and the value being the time.
