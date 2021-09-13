@@ -44,7 +44,7 @@ function handleEvents() {
  * Loads a new schedule from calendar data.
  */
 async function newSchedule() {
-    const response = await request("GET", API.url+"calendar/");
+    const response = await request("GET", API.url+"v2/calendar/");
     const override = await request("GET", API.url+"overrides/");
 
     const events = JSON.parse(response).items;
@@ -53,14 +53,16 @@ async function newSchedule() {
     let dayMatrix = structureScheduleData(events);
 
     for (schedule of overrides) {
-        const found = dayMatrix.filter((item) => {
-            return item.dateString == schedule.date;
-        })
+        let dateData = schedule.date.split("-")
+        let overrideDate = new Date(parseInt(dateData[0]), parseInt(dateData[1])-1, parseInt(dateData[2]))
 
-        if (found.length > 0) {
-            found[0].dateString = schedule.date;
-            found[0].schedule = schedule.blockRotation;
-            found[0].label = `${schedule.scheduleType} (${schedule.scheduleFamily})`
+
+        for (found of dayMatrix) {
+            if (found.date == overrideDate.toDateString()) {
+                found.schedule = schedule.blockRotation;
+                found.label = schedule.scheduleType;
+                found.override = schedule.schedule;
+            }
         }
     }
 

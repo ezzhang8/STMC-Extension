@@ -21,7 +21,7 @@ function initCalendar() {
  * Refreshes the calendar, getting an up-to-date JSON from the calendar endpoint.
  */
 function newCalendar() {
-    getTextFromFile(API.url+"calendar/", (response) => {
+    getTextFromFile(API.url+"v2/calendar/", (response) => {
         const events = JSON.parse(response).items;
         const dateRetrieved = new Date();
 

@@ -22,8 +22,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
+    margin-top: 5px;
+
     background: var(--default-light);
     opacity: 0.5;
+    border-radius: 5px;
+
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -74,7 +78,7 @@
 /* Elements by class name in alphabetical order */
 
 body {
-    background-color: var(--default);
+    background-color: var(--stmc-background);
     font-family: "Verdana", sans-serif;
 }
 
