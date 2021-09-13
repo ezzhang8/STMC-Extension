@@ -53,16 +53,19 @@ async function newSchedule() {
     let dayMatrix = structureScheduleData(events);
 
     for (schedule of overrides) {
-        let dateData = schedule.date.split("-")
-        let overrideDate = new Date(parseInt(dateData[0]), parseInt(dateData[1])-1, parseInt(dateData[2]))
-
-
-        for (found of dayMatrix) {
-            if (found.date == overrideDate.toDateString()) {
-                found.schedule = schedule.blockRotation;
-                found.label = schedule.scheduleType;
-                found.override = schedule.schedule;
+        if (!schedule.scheduleType.includes(".")) {
+            let dateData = schedule.date.split("-")
+            let overrideDate = new Date(parseInt(dateData[0]), parseInt(dateData[1])-1, parseInt(dateData[2]))
+    
+    
+            for (found of dayMatrix) {
+                if (found.date == overrideDate.toDateString()) {
+                    found.schedule = schedule.blockRotation;
+                    found.label = schedule.scheduleType;
+                    found.override = schedule.schedule;
+                }
             }
+    
         }
     }
 
@@ -141,7 +144,7 @@ function loadHouses() {
 
         const houseTable = document.getElementById("house-table")
         for (i=0; i<housePoints.length; i++) {  
-            houseTable.insertAdjacentHTML('beforeend', '<tr><td style="width: 20%; text-align: center"><img class="crest left" src="res/imgs/house/'+housePoints[i].houseName.toLowerCase()+`.png"><div class="other-bg score-div" style="width: ${(housePoints[i].points/housePoints[0].points)*98}%;"><h5 class="house-title small-header white left"><a class="white" id="house-`+housePoints[i].houseId+'">'+housePoints[i].houseName+'</a></h5><span class="score-span right white">'+housePoints[i].points+' pts.</span></div></td></tr>')
+            houseTable.insertAdjacentHTML('beforeend', '<tr><td style="width: 20%; text-align: center"><img class="crest left" src="res/imgs/house/'+housePoints[i].houseName.toLowerCase()+`.png"><div class="other-bg score-div" style="width: ${(Math.max(housePoints[i].points/housePoints[0].points, 0.75)*98)}%;"><h5 class="house-title small-header white left"><a class="white" id="house-`+housePoints[i].houseId+'">'+housePoints[i].houseName+'</a></h5><span class="score-span right white">'+housePoints[i].points+' pts.</span></div></td></tr>')
            
             document.getElementById("house-"+housePoints[i].houseId).addEventListener('click', (event)=> {
                 showHouseTab(parseInt(event.target.id.substr(-1)));

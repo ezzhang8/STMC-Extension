@@ -2,58 +2,69 @@
     Declares all 4 schedule variants.
 */
 
-const regularSchedule = {
-    "Morning X Block": "7:00-8:15",
-    "1st Block": "8:25-9:40",
-    "2nd Block": "9:45-11:00",
-    "Break": "11:00-11:15",
-    "3rd Block": "11:20-12:35",
-    "Lunch": "12:35-1:20",
-    "4th Block": "1:25-2:40",
-    "Afternoon Y Block": "2:45-4:00"
+const regularSchedule = (schedule) => {
+    return {
+        "Morning X Blocks": "7:00-8:15",
+        "Warning Bell": "8:20",
+        ["Block " + schedule.charAt(0)]: "8:25-9:45",
+        ["Block " + schedule.charAt(1)]: "9:50-11:05",
+        "Break": "11:05-11:15",
+        ["Block " + schedule.charAt(2)]: "11:20-12:35",
+        "Lunch": "12:35-1:20",
+        ["Block " + schedule.charAt(3)]: "1:25-2:40",
+        "Afternoon Y Blocks": "2:45-4:00"
+    }
 };
 
-const lateStart = {
-    "Morning X Block": "7:00-8:10",
-    "Staff Meeting/PLC": "8:15-9:10",
-    "1st Block": "9:20-10:25",
-    "2nd Block": "10:30-11:35",
-    "Lunch": "11:35-12:20",
-    "3rd Block": "12:25-1:30",
-    "4th Block": "1:35-2:40",
-    "Afternoon Y Block": "2:45-4:00"
+const lateStart = (schedule) => {
+    return {
+        "Morning X Blocks": "7:00-8:10",
+        "PLC/Staff Meetings": "8:20-9:05",
+        "Warning Bell": "9:10",
+        ["Block " + schedule.charAt(0)]: "9:20-10:25",
+        ["Block " + schedule.charAt(1)]: "10:35-11:35",
+        ["Block " + schedule.charAt(2)]: "11:40-12:45",
+        "Lunch": "12:45-1:30",
+        ["Block " + schedule.charAt(3)]: "1:35-2:40",
+        "Afternoon Y Blocks": "2:45-4:00"
+    }
 };
 
-const academicAssembly = {
-    "Morning X Block": "7:00-8:15",
-    "1st Block": "8:25-9:25",
-    "2nd Block": "9:30-10:30",
-    "Break": "10:30-10:45",
-    "3rd Block": "10:50-11:50",
-    "Lunch": "11:50-12:40",
-    "A/A Block": "12:45-1:35",
-    "4th Block": "1:40-2:40",
-    "Afternoon Y Block": "2:45-4:00"
+const academicAssembly = (schedule) => {
+    return {
+        "Morning X Blocks": "7:00-8:15",
+        "Warning Bell": "8:20",
+        ["Block " + schedule.charAt(0)]: "8:25-9:30",
+        ["Block " + schedule.charAt(1)]: "9:35-10:40",
+        "Break": "10:40-10:50",
+        ["Block " + schedule.charAt(2)]: "10:55-12:00",
+        "Lunch": "12:00-12:40",
+        "Career Ed ": "12:45-1:35",
+        ["Block " + schedule.charAt(3)]: "1:35-2:40",
+        "Afternoon Y Blocks": "2:45-4:00"
+    }
 };
-const massSchedule = {
-    "Morning X Block": "7:00-8:15",
-    "1st Block": "8:25-9:25",
-    "Break": "9:25-9:35",
-    "2nd Block": "9:40-10:40",
-    "Mass": "10:45-11:45",
-    "Lunch": "11:45-12:30",
-    "3rd Block": "12:35-1:35",
-    "4th Block": "1:40-2:40",
-    "Afternoon Y Block": "2:40-4:00"
+const massSchedule = (schedule) => {
+    return {
+        "Morning X Blocks": "7:00-8:15",
+        "Warning Bell": "8:20",
+        ["Block " + schedule.charAt(0)]: "8:25-9:35",
+        ["Block " + schedule.charAt(1)]: "9:40-10:45",
+        "Break": "10:45-10:55",
+        ["Block " + schedule.charAt(2) + " & Mass"]: "11:00-12:50",
+        "Lunch": "12:50-1:30",
+        ["Block " + schedule.charAt(3)]: "1:35-2:40",
+        "Afternoon Y Block": "2:40-4:00"
+    }
 };
 
 
 let currentScheduleIncrement = 0;
 
-document.getElementById("schedule-prev").addEventListener("click", function() {
+document.getElementById("schedule-prev").addEventListener("click", () => {
     paginator(-1);
 })
-document.getElementById("schedule-next").addEventListener("click", function() {
+document.getElementById("schedule-next").addEventListener("click", () => {
     paginator(1);
 })
 
@@ -162,15 +173,18 @@ async function advanceSchedule(dateForward) {
     console.log(schoolDate);
 
     for (schedule of overrides) {
-        let dateData = schedule.date.split("-")
-        let overrideDate = new Date(parseInt(dateData[0]), parseInt(dateData[1])-1, parseInt(dateData[2]))
+        if (!schedule.scheduleType.includes(".")) {
+
+            let dateData = schedule.date.split("-")
+            let overrideDate = new Date(parseInt(dateData[0]), parseInt(dateData[1])-1, parseInt(dateData[2]))
 
 
-        for (found of dayMatrix) {
-            if (found.date == overrideDate.toDateString()) {
-                found.schedule = schedule.blockRotation;
-                found.label = schedule.scheduleType;
-                found.override = schedule.schedule;
+            for (found of dayMatrix) {
+                if (found.date == overrideDate.toDateString()) {
+                    found.schedule = schedule.blockRotation;
+                    found.label = schedule.scheduleType;
+                    found.override = schedule.schedule;
+                }
             }
         }
     }
@@ -191,12 +205,14 @@ async function advanceSchedule(dateForward) {
     }
 
     if (dayMatrix[dateForward].override == undefined) {
-        loadSchedule(scheduleJSON[dayMatrix[dateForward].label]);
+        loadSchedule(scheduleJSON[dayMatrix[dateForward].label](dayMatrix[dateForward].schedule));
     }
     else {
         const table = document.getElementById("schedule-table");
         table.innerHTML = "";
-        for (row of dayMatrix[dateForward]["schedule"+scheduleMode]) {
+        console.log(dayMatrix[dateForward]);
+
+        for (row of dayMatrix[dateForward]["override"]) {
             table.insertAdjacentHTML("beforeend", '<tr><td>' + row.name + '</td><td>' + row.timeSlot + '</td></tr>')
 
         }
